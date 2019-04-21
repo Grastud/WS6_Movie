@@ -2,11 +2,12 @@
 //  MoviesViewController.swift
 //  WS6_Movie
 //
-//  Created by Anastasiia Graftceva on 21.04.19.
+//  Created by Anastasiia Graftceva on 21.04.19 with the help of tutorial by Harley Trung
 //  Copyright © 2019 AnastasiaAlina. All rights reserved.
 //
 
 import UIKit
+import AFNetworking
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -49,9 +50,17 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let movie = movies![indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
+        let posterPath = movie["poster_path"] as! String
         
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
+       
+        let baseUrl = "http://image.tmdb.org/t/p/w500"
+
+        if let posterPath = movie["poster_path"] as? String{
+            let posterUrl = NSURL(string: baseUrl + posterPath)
+            cell.posterView.setImageWith(posterUrl! as URL)
+        }
         
         print("row \(indexPath.row)")
         return cell
