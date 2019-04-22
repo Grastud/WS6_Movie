@@ -27,8 +27,6 @@ class FilterViewController: UIViewController {
     }
     
 
-    
-
     /*
     // MARK: - Navigation
 

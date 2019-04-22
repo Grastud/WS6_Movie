@@ -78,9 +78,6 @@
                                 <segue destination="VxI-wH-766" kind="presentation" id="aT6-yM-3Dc"/>
                             </connections>
                         </barButtonItem>
-                        <connections>
-                            <outlet property="titleView" destination="Hnj-R9-9Lr" id="jkO-E7-ann"/>
-                        </connections>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Hnj-R9-9Lr" id="P3T-4f-6Tm"/>
@@ -159,7 +156,11 @@
                                 <rect key="frame" x="0.0" y="14" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Filter" id="FPI-8N-iq5">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="UJE-52-Mcl"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="UJE-52-Mcl">
+                                            <connections>
+                                                <segue destination="BYZ-38-t0r" kind="show" id="KXH-CJ-X4q"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -188,4 +189,7 @@
             <point key="canvasLocation" x="616.79999999999995" y="807.34632683658174"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="KXH-CJ-X4q"/>
+    </inferredMetricsTieBreakers>
 </document>
