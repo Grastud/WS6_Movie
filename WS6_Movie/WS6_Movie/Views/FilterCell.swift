@@ -1,19 +1,21 @@
 //
-//  MovieCell.swift
+//  FilterCell.swift
 //  WS6_Movie
 //
-//  Created by Anastasiia Graftceva on 21.04.19 with the help of tutorial by Harley Trung:
-//  https://www.youtube.com/watch?v=F0fLmK96TXk
+//  Created by Anastasiia Graftceva on 22.04.19.
 //  Copyright © 2019 AnastasiaAlina. All rights reserved.
 //
 
 import UIKit
 
-class MovieCell: UITableViewCell {
+class FilterCell: UITableViewCell {
 
-    @IBOutlet var posterView: UIImageView!
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var overviewLabel: UILabel!
+    var flag = true
+    @IBAction func onSwitchAction(_ sender: UISwitch) {
+        flag = !flag
+    }
+    @IBOutlet weak var propertyLabel: UILabel!
+    @IBOutlet weak var onOffSwitch: UISwitch!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
