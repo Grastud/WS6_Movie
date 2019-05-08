@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		22521026226DD4B800E557B4 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22521025226DD4B800E557B4 /* FilterViewController.swift */; };
 		22521028226DE2A900E557B4 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22521027226DE2A900E557B4 /* FilterCell.swift */; };
+		229162D422836E010062F4D8 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229162D322836E010062F4D8 /* MovieDetailViewController.swift */; };
 		22B31EDF226CC89800C3E2ED /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B31EDE226CC89800C3E2ED /* MoviesViewController.swift */; };
 		22B31EE1226CDEE800C3E2ED /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B31EE0226CDEE800C3E2ED /* MovieCell.swift */; };
 		71F93AAA0489096056E054C2 /* Pods_WS6_Movie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A57362219B062B472245DF /* Pods_WS6_Movie.framework */; };
@@ -34,6 +35,7 @@
 		088FE7169AA8F4715374D56B /* Pods-WS6_Movie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WS6_Movie.release.xcconfig"; path = "Target Support Files/Pods-WS6_Movie/Pods-WS6_Movie.release.xcconfig"; sourceTree = "<group>"; };
 		22521025226DD4B800E557B4 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		22521027226DE2A900E557B4 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
+		229162D322836E010062F4D8 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		22B31EDE226CC89800C3E2ED /* MoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; tabWidth = 4; };
 		22B31EE0226CDEE800C3E2ED /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		43632D60F4F31DA5B0DA34F3 /* Pods-WS6_MovieTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WS6_MovieTests.debug.xcconfig"; path = "Target Support Files/Pods-WS6_MovieTests/Pods-WS6_MovieTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			children = (
 				22B31EDE226CC89800C3E2ED /* MoviesViewController.swift */,
 				22521025226DD4B800E557B4 /* FilterViewController.swift */,
+				229162D322836E010062F4D8 /* MovieDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -206,9 +209,11 @@
 				TargetAttributes = {
 					C7805B5022525BC4007AB4B8 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					C7805B6422525BC6007AB4B8 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = C7805B5022525BC4007AB4B8;
 					};
 				};
@@ -330,6 +335,7 @@
 				22B31EDF226CC89800C3E2ED /* MoviesViewController.swift in Sources */,
 				22521026226DD4B800E557B4 /* FilterViewController.swift in Sources */,
 				22B31EE1226CDEE800C3E2ED /* MovieCell.swift in Sources */,
+				229162D422836E010062F4D8 /* MovieDetailViewController.swift in Sources */,
 				22521028226DE2A900E557B4 /* FilterCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,14 +502,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 34VU6MK68Q;
 				INFOPLIST_FILE = WS6_Movie/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ch.fhnw.mobileworkshop.anastasia.alina.WS6-Movie";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -515,14 +522,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 34VU6MK68Q;
 				INFOPLIST_FILE = WS6_Movie/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ch.fhnw.mobileworkshop.anastasia.alina.WS6-Movie";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -541,7 +549,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ch.fhnw.mobileworkshop.anastasia.alina.WS6-MovieTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WS6_Movie.app/WS6_Movie";
 			};
@@ -562,7 +570,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "ch.fhnw.mobileworkshop.anastasia.alina.WS6-MovieTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WS6_Movie.app/WS6_Movie";
 			};
