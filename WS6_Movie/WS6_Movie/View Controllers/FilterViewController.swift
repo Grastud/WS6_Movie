@@ -10,10 +10,17 @@ import UIKit
 
 class FilterViewController: UIViewController {
     internal var flags = [Bool]()
+    
 
     @IBOutlet weak var tableView: UITableView!
+    
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
         
         tableView.delegate = self
         tableView.dataSource = self
