@@ -39,7 +39,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69w-2b-ohw" customClass="Image">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69w-2b-ohw">
                                                     <rect key="frame" x="15" y="11" width="60" height="80"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -123,7 +123,7 @@
                                                     <constraint firstItem="vJF-gH-gmc" firstAttribute="leading" secondItem="QxZ-vn-Prs" secondAttribute="leading" id="vqP-fg-0pd"/>
                                                 </constraints>
                                             </scrollView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iEz-HZ-fTP" customClass="DescriptionView" customModule="WS6_Movie">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iEz-HZ-fTP">
                                                 <rect key="frame" x="0.0" y="194" width="375" height="358"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xuN-oL-zcW" userLabel="Content View">
