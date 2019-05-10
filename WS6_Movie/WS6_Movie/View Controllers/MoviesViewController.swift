@@ -12,10 +12,14 @@ import AFNetworking
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-
+    // https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/CreateATableView.html#//apple_ref/doc/uid/TP40015214-CH8-SW1
+    
     var movies: [NSDictionary]?
+    // selectedMovie: StoredMovie?
     
     @IBOutlet weak var tableView: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +41,11 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     */
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // Markovy
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies?.count ?? 0
     }
@@ -45,11 +54,15 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
     // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
     
-    // @available(iOS 2.0, *)
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // tableView(_:cellForRowAt:), configures and provides a cell to display for a given row. Each row in a table
+        // view has one cell, and that cell determines the content that appears in that row and how that content is
+        // laid out.
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
-        let movie = movies![indexPath.row]
+        let movie = movies![indexPath.row] // obtain appropriate movie from movies array
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
 //        let posterPath = movie["poster_path"] as! String
@@ -62,11 +75,23 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         if let posterPath = movie["poster_path"] as? String{
             let posterUrl = NSURL(string: baseUrl + posterPath)
             cell.posterView.setImageWith(posterUrl! as URL)
+            
+            // passing poster to Details
+           // let viewController = MovieDetailViewController(nibName: "DetailMovieViewController", bundle: nil)
+           // viewController.posterImageView = posterView
+           // navigationController?.pushViewController(viewController, animated: true)
+            
         }
         
-//        print("row \(indexPath.row)")
+        // print("row \(indexPath.row)")
         return cell
     }
+    
+    /*
+    https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/TableView_iPhone/ManageSelections/ManageSelections.html#//apple_ref/doc/uid/TP40007451-CH9
+ 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {    }
+    */
     
     func fetchMovies() {
         let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
@@ -88,13 +113,25 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 if let data = dataOrNil {
                     if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
                 print("response: \(responseDictionary)")
-                        self.movies = (responseDictionary["results"] as! [NSDictionary])
+                        self.movies = (responseDictionary["results"] as! [NSDictionary]) // fill movies array
                         self.tableView.reloadData()
                 }
             }
         })
         task.resume()
     }
-
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        
+        super.prepare(for: segue, sender: sender)
+        
+        guard let movieDetailViewController = segue.destination as? MovieDetailViewController,
+            let row = tableView.indexPathForSelectedRow?.row
+            else { return }
+        
+        movieDetailViewController.movie = movies![row] // pass the selected movie to the MovieDetailViewController
+    }
+    
 }
