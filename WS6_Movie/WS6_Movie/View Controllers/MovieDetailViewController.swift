@@ -6,7 +6,7 @@
 //  Copyright © 2019 AnastasiaAlina. All rights reserved.
 //
 
-import UIKit
+/*import UIKit
 
 class MovieDetailViewController: UIViewController {
     
@@ -93,4 +93,4 @@ class MovieDetailViewController: UIViewController {
     }
  */
     
-}
+}*/

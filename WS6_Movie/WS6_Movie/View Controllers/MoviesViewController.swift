@@ -2,136 +2,102 @@
 //  MoviesViewController.swift
 //  WS6_Movie
 //
-//  Created by Anastasiia Graftceva on 21.04.19 with the help of tutorial by Harley Trung:
-//  https://www.youtube.com/watch?v=F0fLmK96TXk
+//  Created by Anastasiia Graftceva on 21.04.19 
 //  Copyright © 2019 AnastasiaAlina. All rights reserved.
 //
 
 import UIKit
-import AFNetworking
+import Kingfisher
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MoviesViewController: UIViewController {
     
-    // https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/CreateATableView.html#//apple_ref/doc/uid/TP40015214-CH8-SW1
+    private let provider = NetworkManager()
+    private var movies = [Movie]()
     
-    var movies: [NSDictionary]?
-    // selectedMovie: StoredMovie?
-    
+
+    @IBOutlet weak var listSwitcher: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupTableView()
+        loadNewMovies()
+    }
+    
+    
+    @IBAction func listSwitcherChanged(_ sender: Any) {
+        movies.removeAll()
+        tableView.reloadData()
+        if listSwitcher.selectedSegmentIndex == 0{
+            loadNewMovies()
+        }
+        else if listSwitcher.selectedSegmentIndex == 1{
+            loadPopularNewMovies()
+        } else {
+            loadMoviesWithBradPitt()
+        }
+    }
+    
+    
+    private func setupTableView(){
         tableView.dataSource = self
-        tableView.delegate = self
-
-        // Do any additional setup after loading the view.
-        fetchMovies()
+        tableView.register(UINib(nibName: MovieCell.nibName, bundle: Bundle.main), forCellReuseIdentifier: MovieCell.reuseIdentifier)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func loadNewMovies(){
+        
+        provider.getNewMovies(page: 1) {[weak self] movies in
+            print("\(movies.count) new movies loaded")
+            self?.movies.removeAll()
+            self?.movies.append(contentsOf: movies)
+            self?.tableView.reloadData()
+        }
     }
-    */
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // Markovy
-        return 1
+    private func loadPopularNewMovies(){
+        
+        provider.getPopularMovies(page: 1) {[weak self] movies in
+            print("\(movies.count) popular movies loaded")
+            self?.movies.removeAll()
+            self?.movies.append(contentsOf: movies)
+            self?.tableView.reloadData()
+        }
     }
+    
+    private func loadMoviesWithBradPitt() {
+        provider.getMoviesWithActors(actorIds: [819]) {[weak self] movies in
+            print("\(movies.count) popular movies loaded")
+            self?.movies.removeAll()
+            self?.movies.append(contentsOf: movies)
+            self?.tableView.reloadData()
+        }
+    }
+}
+
+extension MoviesViewController : UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies?.count ?? 0
+        return movies.count
     }
-    
-    
-    // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-    // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // tableView(_:cellForRowAt:), configures and provides a cell to display for a given row. Each row in a table
-        // view has one cell, and that cell determines the content that appears in that row and how that content is
-        // laid out.
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        let movie = movies[indexPath.row]
         
-        let movie = movies![indexPath.row] // obtain appropriate movie from movies array
-        let title = movie["title"] as! String
-        let overview = movie["overview"] as! String
-//        let posterPath = movie["poster_path"] as! String
-        
-        cell.titleLabel.text = title
-        cell.overviewLabel.text = overview
-       
-        let baseUrl = "http://image.tmdb.org/t/p/w500"
-
-        if let posterPath = movie["poster_path"] as? String{
-            let posterUrl = NSURL(string: baseUrl + posterPath)
-            cell.posterView.setImageWith(posterUrl! as URL)
-            
-            // passing poster to Details
-           // let viewController = MovieDetailViewController(nibName: "DetailMovieViewController", bundle: nil)
-           // viewController.posterImageView = posterView
-           // navigationController?.pushViewController(viewController, animated: true)
-            
-        }
-        
-        // print("row \(indexPath.row)")
-        return cell
-    }
-    
-    /*
-    https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/TableView_iPhone/ManageSelections/ManageSelections.html#//apple_ref/doc/uid/TP40007451-CH9
- 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {    }
-    */
-    
-    func fetchMovies() {
-        let apiKey = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
-        let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
-        let request = NSURLRequest(
-            url: url! as URL,
-            cachePolicy: NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData,
-            timeoutInterval: 10)
-        
-        let session = URLSession(
-            configuration: URLSessionConfiguration.default,
-            delegate: nil,
-            delegateQueue:OperationQueue.main
-        )
-        
-        let task: URLSessionDataTask = session.dataTask(with: request as URLRequest,
-            completionHandler: { (dataOrNil, response, error) in
-                                                                        
-                if let data = dataOrNil {
-                    if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
-                print("response: \(responseDictionary)")
-                        self.movies = (responseDictionary["results"] as! [NSDictionary]) // fill movies array
-                        self.tableView.reloadData()
-                }
+        if let cell = tableView.dequeueReusableCell(withIdentifier: MovieCell.reuseIdentifier, for: indexPath) as? MovieCell{
+            cell.titleLabel.text = movie.title
+            cell.overviewLabel.text = movie.overview
+            if let url = movie.fullPosterURL{
+                cell.posterImageView.kf.setImage(with: url)
             }
-        })
-        task.resume()
+            
+            return cell
+        }
+        return tableView.dequeueReusableCell(withIdentifier: MovieCell.reuseIdentifier, for: indexPath)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        
-        super.prepare(for: segue, sender: sender)
-        
-        guard let movieDetailViewController = segue.destination as? MovieDetailViewController,
-            let row = tableView.indexPathForSelectedRow?.row
-            else { return }
-        
-        movieDetailViewController.movie = movies![row] // pass the selected movie to the MovieDetailViewController
-    }
+    
     
 }
+

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1020"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "559FA29D7C9955CDF5719225B57F1411"
+               BlueprintIdentifier = "5FB0CDA50D5A3035B6F215595282DF93"
                BuildableName = "Pods_WS6_Movie.framework"
                BlueprintName = "Pods-WS6_Movie"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "559FA29D7C9955CDF5719225B57F1411"
+            BlueprintIdentifier = "5FB0CDA50D5A3035B6F215595282DF93"
             BuildableName = "Pods_WS6_Movie.framework"
             BlueprintName = "Pods-WS6_Movie"
             ReferencedContainer = "container:Pods.xcodeproj">
