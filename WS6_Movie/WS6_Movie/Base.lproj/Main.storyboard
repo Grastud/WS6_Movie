@@ -55,6 +55,7 @@
                     <connections>
                         <outlet property="listSwitcher" destination="g4s-Va-5CS" id="McS-SL-Dnz"/>
                         <outlet property="tableView" destination="Hnj-R9-9Lr" id="rnW-Ss-Iok"/>
+                        <segue destination="Q2t-8R-xEP" kind="show" id="OY5-mc-OaS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -70,13 +71,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wly-hd-bAs">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7tB-ST-tw8">
-                                        <rect key="frame" x="0.0" y="-10" width="375" height="667"/>
+                                        <rect key="frame" x="0.0" y="-10" width="375" height="623"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QxZ-vn-Prs">
-                                                <rect key="frame" x="0.0" y="8" width="375" height="188"/>
+                                                <rect key="frame" x="0.0" y="8" width="375" height="144"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vJF-gH-gmc">
                                                         <rect key="frame" x="0.0" y="8" width="375" height="191"/>
@@ -97,7 +98,7 @@
                                                 </constraints>
                                             </scrollView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iEz-HZ-fTP">
-                                                <rect key="frame" x="0.0" y="194" width="375" height="402"/>
+                                                <rect key="frame" x="0.0" y="194" width="375" height="358"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xuN-oL-zcW" userLabel="Content View">
                                                         <rect key="frame" x="0.0" y="0.0" width="114" height="41"/>
