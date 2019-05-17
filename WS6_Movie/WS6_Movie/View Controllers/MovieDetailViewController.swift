@@ -6,7 +6,7 @@
 //  Copyright © 2019 AnastasiaAlina. All rights reserved.
 //
 
-/*import UIKit
+import UIKit
 
 class MovieDetailViewController: UIViewController {
     
@@ -19,9 +19,8 @@ class MovieDetailViewController: UIViewController {
      after initialization, the movie property must be optional
     */
     
-    var movie: NSDictionary?
+    var movie: Movie?
 
-    
     @IBOutlet weak var detailScrollView: UIScrollView!
     @IBOutlet weak var contentView: UIStackView!
     
@@ -47,32 +46,11 @@ class MovieDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        // posterImageView.image = newImage
-
-        // Do any additional setup after loading the view.
         
-        /*
-         e.g. https://matteomanferdini.com/how-ios-view-controllers-communicate-with-each-other/
-         imageView?.image = contact?.photo
-         nameLabel?.text = contact?.name
-         positionLabel?.text = contact?.position
-         emailButton?.setTitle(contact?.email, for: .normal)
-         phoneButton?.setTitle(contact?.phone, for: .normal)
-         */
-        
-        //        let posterPath = movie["poster_path"] as! String
-
-        let baseUrl = "http://image.tmdb.org/t/p/w500"
-        
-        if let posterPath = movie!["poster_path"] as? String {
-            let posterUrl = NSURL(string: baseUrl + posterPath)
-            
-            posterImageView.setImageWith(posterUrl! as URL)
-            titleLabel.text = movie!["title"] as? String // let title = movie?["title"] as! String
-            categoryLabel.text = movie!["release_date"] as? String // movie?["overview"] as! String
-        }
-        
+        titleLabel.text = movie?.title
+        categoryLabel.text = movie?.releaseDate
+        // posterImageView.image ...?
+        posterImageView.kf.setImage(with: movie?.fullPosterURL)
     }
 
     /*
@@ -93,4 +71,4 @@ class MovieDetailViewController: UIViewController {
     }
  */
     
-}*/
+}
