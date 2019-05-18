@@ -29,8 +29,6 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet private weak var posterHeight: NSLayoutConstraint!
     
-    // var newImage: UIImage!
-    
     @IBOutlet weak var posterImageView: UIImageView! {
         didSet {
             guard let poster = posterImageView.image
@@ -49,7 +47,6 @@ class MovieDetailViewController: UIViewController {
         
         titleLabel.text = movie?.title
         categoryLabel.text = movie?.releaseDate
-        // posterImageView.image ...?
         posterImageView.kf.setImage(with: movie?.fullPosterURL)
     }
 
