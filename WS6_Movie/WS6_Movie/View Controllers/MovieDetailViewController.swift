@@ -26,7 +26,8 @@ class MovieDetailViewController: UIViewController {
     
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet private weak var posterHeight: NSLayoutConstraint!
     
     @IBOutlet weak var posterImageView: UIImageView! {
@@ -46,7 +47,9 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
         
         titleLabel.text = movie?.title
-        categoryLabel.text = movie?.releaseDate
+        releaseDateLabel.text = movie?.releaseDate
+        descriptionLabel.text = movie?.overview
+        
         posterImageView.kf.setImage(with: movie?.fullPosterURL)
     }
 
