@@ -9,13 +9,13 @@
 import UIKit
 import Kingfisher
 
-// class MoviesViewController: UIViewController {
+
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     private let provider = NetworkManager()
     // private var movies = [Movie]()
     var movies = [Movie]()
-
-
+    
+    
     @IBOutlet weak var listSwitcher: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
@@ -24,7 +24,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         //
         tableView.dataSource = self
-        tableView.delegate = self // Markovy
+        tableView.delegate = self
         tableView.register(UINib(nibName: MovieCell.nibName, bundle: Bundle.main), forCellReuseIdentifier: MovieCell.reuseIdentifier)
         //
         loadNewMovies()
@@ -34,15 +34,17 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return 1
     }
     
-    // override func performSegue(withIdentifier identifier: String, sender: Any?) {
-    //    <#code#>
-    // }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        // prepare() should get called by when user clicks on a movie cell
+        // and segue from segue.source (= self) to segue.destination (= MovieDetailViewController)
+        //
+        // for some reason, prepare() is never called - possibly the segue is improperly
+        // set in the IB, or there is some unintended interaction with the switcher
+        //
+        // fix: see tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+        // that programmatically triggers the segue
         
-        NSLog("IN: prepare() %@", "MoviesViewController")
+        NSLog("prepare(): IN")
         
         super.prepare(for: segue, sender: sender)
         
@@ -50,17 +52,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             let movieDetailViewController = segue.destination as? MovieDetailViewController,
             let row = tableView.indexPathForSelectedRow?.row
             else {
-                // I should not get here
-                // Either destination or source is nil
-                // Or, more probable, row is nil!
-                NSLog("Segue: identifier %@", segue.identifier ?? "blah")
-                NSLog("Segue: source %@", segue.source.nibName ?? "blahblah")
-                NSLog("Segue: destination %@", segue.destination.nibName ?? "blahblahblah")
+                NSLog("prepare(): segue identifier  %@", segue.identifier ?? "missing")
+                NSLog("prepare(): segue source      %@", segue.source.nibName ?? "missing")
+                NSLog("prepare(): segue destination %@", segue.destination.nibName ?? "missing")
                 return }
         
-        NSLog("IN: prepare() row = %d title = %@:", row, movies[row].title)
+        NSLog("prepare(): row = %d title = %@:", row, movies[row].title)
         
         movieDetailViewController.movie = movies[row] // pass the selected movie to the MovieDetailViewController
+        
+        NSLog("prepare(): OUT")
     }
     
     @IBAction func listSwitcherChanged(_ sender: Any) {
@@ -104,13 +105,12 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        NSLog("CHECK: tableView() at %@", "TableView")
         return movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieCell.reuseIdentifier, for: indexPath) as! MovieCell
-
+        
         let movie = movies[indexPath.row]
         cell.titleLabel.text = movie.title
         cell.overviewLabel.text = movie.overview
@@ -120,19 +120,23 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let row = indexPath.row
-        NSLog("CHECK: tableView() at %d", row)
+        NSLog("tableView() didSelectRowAt: IN")
         
-        // force performSegue
+        let row = indexPath.row
+        NSLog("tableView() didSelectRowAt: row = %d", row)
+        
+        // programmatically perform the segue; see prepare()
+        //
         // https://developer.apple.com/documentation/uikit/uiviewcontroller/1621413-performSegueWithIdentifier
         // Normally, segues are initiated automatically and not using this method. However, you can use this method in cases where the segue could not be configured in your storyboard file. For example, you might call it from a custom action handler used in response to shake or accelerometer events.
-        // performSegue() does not call prepare() ?
         
         // let movieDetailViewController = segue.destination as? MovieDetailViewController,
         // movieDetailViewController.movie = movies[row] // pass the selected movie to the MovieDetailViewController
         
-        performSegue(withIdentifier: "fromMoviesToMovie", sender: self)
-        NSLog("CHECK: called performSegue() at %d", 143)
+        NSLog("tableView() didSelectRowAt: -> performSegue() -> prepare()")
+        performSegue(withIdentifier: "fromMoviesToMovie", sender: self) // -> prepare()
         // tableView.deselectRow(at: indexPath, animated: true)
+        
+        NSLog("tableView() didSelectRowAt: OUT")
     }
 }
