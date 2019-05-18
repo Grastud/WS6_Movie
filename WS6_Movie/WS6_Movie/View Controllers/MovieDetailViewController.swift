@@ -30,9 +30,9 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet private weak var posterHeight: NSLayoutConstraint!
     
-    @IBOutlet weak var posterImageView: UIImageView! {
+    @IBOutlet weak var backdropView: UIImageView! {
         didSet {
-            guard let poster = posterImageView.image
+            guard let poster = backdropView.image
                 else { return }
             
             DispatchQueue.main.async {
@@ -50,7 +50,7 @@ class MovieDetailViewController: UIViewController {
         releaseDateLabel.text = movie?.releaseDate
         descriptionLabel.text = movie?.overview
         
-        posterImageView.kf.setImage(with: movie?.fullPosterURL)
+        backdropView.kf.setImage(with: movie?.fullBackdropURL)
     }
 
     /*

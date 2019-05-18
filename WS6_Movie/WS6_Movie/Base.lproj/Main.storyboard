@@ -170,9 +170,9 @@
                         <viewLayoutGuide key="safeArea" id="7Cg-Pp-mGB"/>
                     </view>
                     <connections>
+                        <outlet property="backdropView" destination="vJF-gH-gmc" id="0Ew-sc-3Dv"/>
                         <outlet property="descriptionLabel" destination="UGN-wv-2AJ" id="yYx-pk-jm8"/>
                         <outlet property="posterHeight" destination="RxS-MX-FJ8" id="j3p-ph-FiG"/>
-                        <outlet property="posterImageView" destination="vJF-gH-gmc" id="0Ew-sc-3Dv"/>
                         <outlet property="releaseDateLabel" destination="xZd-ap-B96" id="fE2-EX-17i"/>
                         <outlet property="titleLabel" destination="x2g-wu-nMJ" id="ub2-4e-z15"/>
                     </connections>

@@ -23,6 +23,11 @@ struct Movie{
             return URL(string: "https://image.tmdb.org/t/p/w500" + posterPath)
         }
     }
+    var fullBackdropURL:URL?{
+        get{
+            return URL(string: "https://image.tmdb.org/t/p/w780" + backdrop)
+        }
+    }
 }
 
 extension Movie: Decodable {
