@@ -19,19 +19,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hnj-R9-9Lr">
-                                <rect key="frame" x="0.0" y="92" width="375" height="541"/>
+                                <rect key="frame" x="0.0" y="112" width="375" height="555"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="KQn-Ye-88X"/>
-                                    <constraint firstAttribute="height" constant="541" id="lUL-VL-epg"/>
-                                </constraints>
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="g4s-Va-5CS">
-                                <rect key="frame" x="0.0" y="64" width="375" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="375" id="9Db-WP-xbi"/>
-                                    <constraint firstAttribute="height" constant="28" id="ve1-wI-73g"/>
-                                </constraints>
+                                <rect key="frame" x="20" y="74" width="335" height="29"/>
                                 <segments>
                                     <segment title="New Movies"/>
                                     <segment title="Popular Movies"/>
@@ -43,10 +35,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="g4s-Va-5CS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3db-oO-sXU"/>
-                            <constraint firstItem="g4s-Va-5CS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="IJu-gE-46x"/>
-                            <constraint firstItem="Hnj-R9-9Lr" firstAttribute="top" secondItem="g4s-Va-5CS" secondAttribute="bottom" id="bVn-kn-txd"/>
-                            <constraint firstItem="Hnj-R9-9Lr" firstAttribute="leading" secondItem="g4s-Va-5CS" secondAttribute="leading" id="bcv-Ur-QNr"/>
+                            <constraint firstItem="Hnj-R9-9Lr" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5Rj-x9-I7z"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Hnj-R9-9Lr" secondAttribute="bottom" id="9wb-8x-v5f"/>
+                            <constraint firstItem="g4s-Va-5CS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="IJu-gE-46x"/>
+                            <constraint firstItem="Hnj-R9-9Lr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="LLx-Ej-neO"/>
+                            <constraint firstItem="Hnj-R9-9Lr" firstAttribute="top" secondItem="g4s-Va-5CS" secondAttribute="bottom" constant="10" id="bVn-kn-txd"/>
+                            <constraint firstItem="g4s-Va-5CS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="eUP-O0-Cwq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="g4s-Va-5CS" secondAttribute="trailing" constant="20" id="i4w-5G-sxq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
