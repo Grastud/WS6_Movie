@@ -9,6 +9,7 @@ target 'WS6_Movie' do
   # pod 'AFNetworking'
   pod 'Moya', '~> 12.0'
   pod 'Kingfisher'
+  pod 'RealmSwift'
 
   target 'WS6_MovieTests' do
     inherit! :search_paths
