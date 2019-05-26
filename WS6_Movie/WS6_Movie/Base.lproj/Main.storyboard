@@ -72,10 +72,10 @@
             </objects>
             <point key="canvasLocation" x="-311" y="817"/>
         </scene>
-        <!--View Controller-->
+        <!--Movies Search Controller-->
         <scene sceneID="z79-DJ-FIG">
             <objects>
-                <viewController id="VfI-hO-az6" sceneMemberID="viewController">
+                <viewController id="VfI-hO-az6" customClass="MoviesSearchController" customModule="WS6_Movie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wq4-4f-6bt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -106,6 +106,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="yGB-9x-rTR"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchBar" destination="NJy-Mk-nei" id="e5p-gg-mrf"/>
+                        <outlet property="tableView" destination="UCU-dG-ulx" id="AoP-OK-MHp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bLF-ON-9eg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
