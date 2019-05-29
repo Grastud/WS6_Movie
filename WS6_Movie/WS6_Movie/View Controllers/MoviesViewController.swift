@@ -12,7 +12,6 @@ import Kingfisher
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     private let provider = NetworkManager()
-    // private var movies = [Movie]()
     var movies = [Movie]()
     
     
@@ -67,39 +66,31 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func listSwitcherChanged(_ sender: Any) {
         movies.removeAll()
         tableView.reloadData()
-        if listSwitcher.selectedSegmentIndex == 0{
+        
+        NSLog("listSwitcherChanged(): switcher = \(listSwitcher.selectedSegmentIndex)")
+        
+        if listSwitcher.selectedSegmentIndex == 0 {
             loadNewMovies()
         }
-        else if listSwitcher.selectedSegmentIndex == 1{
+        else {
             loadPopularNewMovies()
-        } else {
-            loadMoviesWithBradPitt()
         }
     }
     
     private func loadNewMovies(){
         provider.getNewMovies(page: 1) {[weak self] movies in
-            print("\(movies.count) new movies loaded")
             self?.movies.removeAll()
             self?.movies.append(contentsOf: movies)
+            print("\(movies.count) new movies loaded")
             self?.tableView.reloadData()
         }
     }
     
     private func loadPopularNewMovies(){
         provider.getPopularMovies(page: 1) {[weak self] movies in
-            print("\(movies.count) popular movies loaded")
             self?.movies.removeAll()
             self?.movies.append(contentsOf: movies)
-            self?.tableView.reloadData()
-        }
-    }
-    
-    private func loadMoviesWithBradPitt() {
-        provider.getMoviesWithActors(actorIds: [819]) {[weak self] movies in
             print("\(movies.count) popular movies loaded")
-            self?.movies.removeAll()
-            self?.movies.append(contentsOf: movies)
             self?.tableView.reloadData()
         }
     }

@@ -25,7 +25,7 @@ struct NetworkManager: Network {
             case let .success(response):
                 do {
                     let results = try JSONDecoder().decode(MovieResult.self, from: response.data)
-                    completion(results.movies)
+                    completion(results.movies ?? [])
                 } catch let err {
                     print(err)
                 }
@@ -42,31 +42,21 @@ struct NetworkManager: Network {
             case let .success(response):
                 do {
                     let results = try JSONDecoder().decode(MovieResult.self, from: response.data)
-                    completion(results.movies)
+                    completion(results.movies ?? [])
                 } catch let err {
                     print(err)
+                    
+                    // DEBUGGING of empty list switcher == 1
+                    //
+                    // exception raised in MovieResult \ int() \ movies = try container.decode([Movie].self, forKey: .movies)
+                    print("page: \(page)")
+                    print(response.data)
+                    // DEBUGGING
+                    
                 }
             case let .failure(error):
                 print(error)
             }
         }
-    }
-    
-    func getMoviesWithActors(actorIds: [Int], completion: @escaping ([Movie]) -> ()) {
-        
-        provider.request(.actor(ids: actorIds)) { result in
-            switch result {
-            case let .success(response):
-                do {
-                    let result = try JSONDecoder().decode(MovieResult.self, from: response.data)
-                    completion(result.movies)
-                } catch let err {
-                    print(err)
-                }
-            case let .failure(error):
-                print(error)
-            }
-        }
-    }
-    
+    }    
 }
