@@ -61,14 +61,5 @@ class MovieDetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-    /* unwind segue?
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        
-        super.prepare(for: segue, sender: sender)
-    }
- */
     
 }

@@ -73,7 +73,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             loadNewMovies()
         }
         else {
-            loadPopularNewMovies()
+            // loadPopularNewMovies()
+            loadUpcomingMovies()
         }
     }
     
@@ -86,7 +87,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    private func loadPopularNewMovies(){
+    private func loadUpcomingMovies(){
+        provider.getUpcomingMovies(page: 1) {[weak self] movies in
+            self?.movies.removeAll()
+            self?.movies.append(contentsOf: movies)
+            print("\(movies.count) upcoming movies loaded")
+            self?.tableView.reloadData()
+        }
+    }
+    
+    private func loadPopularNewMovies(){  // JSON decoding error
         provider.getPopularMovies(page: 1) {[weak self] movies in
             self?.movies.removeAll()
             self?.movies.append(contentsOf: movies)
