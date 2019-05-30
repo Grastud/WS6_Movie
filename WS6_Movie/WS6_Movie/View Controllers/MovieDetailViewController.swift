@@ -21,6 +21,7 @@ class MovieDetailViewController: UIViewController {
     
     var movie: Movie?
     let realm = RealmApi()
+    
 
     @IBOutlet weak var detailScrollView: UIScrollView!
     @IBOutlet weak var contentView: UIStackView!
@@ -30,8 +31,11 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet private weak var posterHeight: NSLayoutConstraint!
-    @IBOutlet weak var fav_star: UIButton!
     
+    //@IBOutlet weak var unfavLabel: UILabel!
+    
+    @IBOutlet weak var fav_star: UIButton!
+    @IBOutlet weak var fav_label: UILabel!
     @IBOutlet weak var backdropView: UIImageView! {
         didSet {
             guard let poster = backdropView.image
@@ -45,23 +49,36 @@ class MovieDetailViewController: UIViewController {
     }
     
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         titleLabel.text = movie?.title
         releaseDateLabel.text = movie?.releaseDate
         descriptionLabel.text = movie?.overview
-        
+        fav_label.text="favorise"
         backdropView.kf.setImage(with: movie?.fullBackdropURL)
         
         
         
     }
     
-    //@IBAction func tapOnButton(_ sender: Any) {
-    //    realm.addFavorites(fav)
+    @IBAction func tapOnButton(_ sender: Any) {
+        let fav = Favorite(value: movie?.title)
+        if (fav_label.text=="favorise"){
+            realm.addFavorites(fav: fav)
+            fav_label.text="unfavorise"
+        }
+        else if (fav_label.text=="unfavorise") {
+            realm.removeFavorites(fav: fav)
+            fav_label.text="favorise"
+        }
+        else {
+            print("Ups")
+        }
         
-   // }
+    }
     
     
     }
@@ -83,5 +100,5 @@ class MovieDetailViewController: UIViewController {
         super.prepare(for: segue, sender: sender)
     }
  */
-    
+
 

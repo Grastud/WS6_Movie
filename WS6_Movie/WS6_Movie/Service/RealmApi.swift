@@ -11,7 +11,7 @@ import RealmSwift
 
 class RealmApi{
     
-    func addFavorites (fav: Favorite){
+    func addFavorites (fav:Favorite){
         let realm = try! Realm()
         let fav = Favorite()
         try! realm.write(){
@@ -19,7 +19,7 @@ class RealmApi{
         }
     }
 
-func removeFavorites (fav: Favorite){
+    func removeFavorites (fav:Favorite){
     let realm = try! Realm()
     let fav = Favorite()
     try! realm.write(){
@@ -27,17 +27,17 @@ func removeFavorites (fav: Favorite){
     }
 }
 
-    func currentFavorite (fav: Favorite) -> Favorite{
+    func isFavorite () -> Bool {
         let realm = try! Realm()
-            if let fav = realm.objects(Favorite.self).first{
-                return currentFavorite(fav: fav)
+        let fav = Favorite()
+            if (realm.objects(Favorite.self).contains(fav)){
+                return true
         }
             else{
-            //if no favorite was found -> add one
-                addFavorites(fav: fav)
+            
+                return false
         }
-    return fav
-    }
+        }
     //Damit man die View von Bookmarks füllen kann, die Favoriten nur anzeigen
 var favorites:Results<Favorite>? {
     get {

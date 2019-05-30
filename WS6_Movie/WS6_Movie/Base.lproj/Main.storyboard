@@ -63,14 +63,24 @@
                     <view key="view" contentMode="scaleToFill" id="2Qq-5Y-MGG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="L8l-W3-Dxg">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="L8l-W3-Dxg" firstAttribute="trailing" secondItem="sVu-9h-qnX" secondAttribute="trailing" id="ZgO-Xv-Z26"/>
+                            <constraint firstItem="L8l-W3-Dxg" firstAttribute="top" secondItem="sVu-9h-qnX" secondAttribute="top" id="nuK-rG-xiu"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="sVu-9h-qnX"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="bookmarks" id="JDK-bh-eUV"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vnu-L3-Fd0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-311" y="817"/>
+            <point key="canvasLocation" x="-311.19999999999999" y="816.34182908545733"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="z79-DJ-FIG">
@@ -80,7 +90,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="NJy-Mk-nei">
+                            <searchBar contentMode="redraw" barStyle="black" text="" translatesAutoresizingMaskIntoConstraints="NO" id="NJy-Mk-nei">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="8XT-vU-IC1"/>
@@ -174,8 +184,16 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ItF-to-XBa">
                                                 <rect key="frame" x="294" y="323" width="55" height="30"/>
-                                                <state key="normal" title="Favorite"/>
+                                                <connections>
+                                                    <action selector="tapOnButton:" destination="Q2t-8R-xEP" eventType="touchUpInside" id="nqb-uH-4ms"/>
+                                                </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorite" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFL-Q3-yvu">
+                                                <rect key="frame" x="304" y="333" width="61" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="vJF-gH-gmc" firstAttribute="top" secondItem="m3a-zj-lJ0" secondAttribute="top" id="3JX-k2-Hj2"/>
@@ -183,6 +201,8 @@
                                             <constraint firstItem="m3a-zj-lJ0" firstAttribute="trailing" secondItem="UGN-wv-2AJ" secondAttribute="trailing" constant="20" id="CIk-5X-2Tn"/>
                                             <constraint firstItem="UGN-wv-2AJ" firstAttribute="leading" secondItem="m3a-zj-lJ0" secondAttribute="leading" constant="20" id="GNG-OU-V2c"/>
                                             <constraint firstItem="vJF-gH-gmc" firstAttribute="leading" secondItem="m3a-zj-lJ0" secondAttribute="leading" id="HCF-NG-mUd"/>
+                                            <constraint firstItem="m3a-zj-lJ0" firstAttribute="trailing" secondItem="dFL-Q3-yvu" secondAttribute="trailing" constant="10" id="JmZ-bq-ADo"/>
+                                            <constraint firstItem="dFL-Q3-yvu" firstAttribute="top" secondItem="vJF-gH-gmc" secondAttribute="bottom" constant="33" id="KGd-2V-Ibo"/>
                                             <constraint firstItem="ItF-to-XBa" firstAttribute="top" secondItem="vJF-gH-gmc" secondAttribute="bottom" constant="23" id="QDa-ff-lhW"/>
                                             <constraint firstItem="ItF-to-XBa" firstAttribute="leading" secondItem="m3a-zj-lJ0" secondAttribute="leading" constant="294" id="Wdr-oB-H49"/>
                                             <constraint firstItem="m3a-zj-lJ0" firstAttribute="trailing" secondItem="x2g-wu-nMJ" secondAttribute="trailing" constant="20" id="bTU-yo-g3K"/>
@@ -220,6 +240,8 @@
                     <connections>
                         <outlet property="backdropView" destination="vJF-gH-gmc" id="0Ew-sc-3Dv"/>
                         <outlet property="descriptionLabel" destination="UGN-wv-2AJ" id="yYx-pk-jm8"/>
+                        <outlet property="fav_label" destination="dFL-Q3-yvu" id="ilw-Ms-hNq"/>
+                        <outlet property="fav_star" destination="ItF-to-XBa" id="2mT-eG-Q7a"/>
                         <outlet property="posterHeight" destination="RxS-MX-FJ8" id="j3p-ph-FiG"/>
                         <outlet property="releaseDateLabel" destination="xZd-ap-B96" id="fE2-EX-17i"/>
                         <outlet property="titleLabel" destination="x2g-wu-nMJ" id="ub2-4e-z15"/>
