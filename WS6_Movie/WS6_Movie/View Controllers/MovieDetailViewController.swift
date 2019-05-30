@@ -22,11 +22,6 @@ class MovieDetailViewController: UIViewController {
     var movie: Movie?
     let realm = RealmApi()
     
-
-    @IBOutlet weak var detailScrollView: UIScrollView!
-    @IBOutlet weak var contentView: UIStackView!
-    
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -49,19 +44,16 @@ class MovieDetailViewController: UIViewController {
     }
     
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         titleLabel.text = movie?.title
         releaseDateLabel.text = movie?.releaseDate
         descriptionLabel.text = movie?.overview
+        descriptionLabel.sizeToFit()
         fav_label.text="favorise"
-        backdropView.kf.setImage(with: movie?.fullBackdropURL)
         
-        
-        
+        backdropView.kf.setImage(with: movie?.fullBackdropURL, placeholder: UIImage(named:"default_backdrop"))
     }
     
     @IBAction func tapOnButton(_ sender: Any) {
@@ -97,5 +89,7 @@ class MovieDetailViewController: UIViewController {
         super.prepare(for: segue, sender: sender)
     }
  */
+    
+}
 
 

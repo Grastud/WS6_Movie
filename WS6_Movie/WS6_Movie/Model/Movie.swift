@@ -11,7 +11,6 @@ import Foundation
 struct Movie{
     let id: Int
     let posterPath: String
-    //let videoPath: String
     let backdrop: String
     let title: String
     let releaseDate: String
@@ -20,12 +19,20 @@ struct Movie{
     
     var fullPosterURL:URL?{
         get{
-            return URL(string: "https://image.tmdb.org/t/p/w500" + posterPath)
+            if(posterPath.isEmpty) {
+                return nil
+            } else {
+                return URL(string: "https://image.tmdb.org/t/p/w500" + posterPath)
+            }
         }
     }
     var fullBackdropURL:URL?{
         get{
-            return URL(string: "https://image.tmdb.org/t/p/w780" + backdrop)
+            if(backdrop.isEmpty) {
+                return nil
+            } else {
+                return URL(string: "https://image.tmdb.org/t/p/w780" + backdrop)
+            }
         }
     }
 }
@@ -34,7 +41,6 @@ extension Movie: Decodable {
     enum MovieCodingKeys: String, CodingKey {
         case id
         case posterPath = "poster_path"
-       // case videoPath
         case backdrop = "backdrop_path"
         case title
         case releaseDate = "release_date"
@@ -46,9 +52,8 @@ extension Movie: Decodable {
         let container = try decoder.container(keyedBy: MovieCodingKeys.self)
         
         id = try container.decode(Int.self, forKey: .id)
-        posterPath = try container.decode(String.self, forKey: .posterPath)
-       // videoPath = try container.decode(String.self, forKey: .videoPath)
-        backdrop = try container.decode(String.self, forKey: .backdrop)
+        posterPath = try container.decodeIfPresent(String.self, forKey: .posterPath) ?? ""
+        backdrop = try container.decodeIfPresent(String.self, forKey: .backdrop) ?? ""
         title = try container.decode(String.self, forKey: .title)
         releaseDate = try container.decode(String.self, forKey: .releaseDate)
         rating = try container.decode(Double.self, forKey: .rating)
