@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 struct MovieResult {
     let page: Int
     let numberOfResults: Int
@@ -27,8 +28,13 @@ extension MovieResult: Decodable {
         let container = try decoder.container(keyedBy: MovieResultCodingKeys.self)
         
         page = try container.decode(Int.self, forKey: .page)
+        NSLog("page: \(page)")
         numberOfResults = try container.decode(Int.self, forKey: .numberOfResults)
+        NSLog("total_results: \(numberOfResults)")
         numberOfPages = try container.decode(Int.self, forKey: .numberOfPages)
+        NSLog("total_pages: \(numberOfPages)")
         movies = try container.decode([Movie].self, forKey: .movies)
+        NSLog("results: %d", movies.count)
     }
 }
+

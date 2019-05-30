@@ -34,7 +34,6 @@ extension Movie: Decodable {
     enum MovieCodingKeys: String, CodingKey {
         case id
         case posterPath = "poster_path"
-       // case videoPath
         case backdrop = "backdrop_path"
         case title
         case releaseDate = "release_date"
@@ -47,7 +46,6 @@ extension Movie: Decodable {
         
         id = try container.decode(Int.self, forKey: .id)
         posterPath = try container.decode(String.self, forKey: .posterPath)
-       // videoPath = try container.decode(String.self, forKey: .videoPath)
         backdrop = try container.decode(String.self, forKey: .backdrop)
         title = try container.decode(String.self, forKey: .title)
         releaseDate = try container.decode(String.self, forKey: .releaseDate)
