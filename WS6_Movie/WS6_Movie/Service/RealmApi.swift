@@ -10,26 +10,26 @@ import Foundation
 import RealmSwift
 
 class RealmApi{
+    let realm = try! Realm()
     
-    func addFavorites (fav:Favorite){
-        let realm = try! Realm()
-        let fav = Favorite()
+    func addFavorites (movieTitle:String){
+        let fav = Favorite(value:movieTitle)
         try! realm.write(){
             realm.add(fav)
         }
     }
 
-    func removeFavorites (fav:Favorite){
-    let realm = try! Realm()
-    let fav = Favorite()
+    func removeFavorites (movieTitle:String){
+    
+    let fav = Favorite(value:movieTitle)
     try! realm.write(){
         realm.delete(fav)
     }
 }
 
-    func isFavorite () -> Bool {
-        let realm = try! Realm()
-        let fav = Favorite()
+    func isFavorite (movieTitle:String) -> Bool {
+        
+        let fav = Favorite(value:movieTitle)
             if (realm.objects(Favorite.self).contains(fav)){
                 return true
         }

@@ -56,10 +56,10 @@
             </objects>
             <point key="canvasLocation" x="616.79999999999995" y="132.68365817091455"/>
         </scene>
-        <!--View Controller-->
+        <!--Favorite Movies View Controller-->
         <scene sceneID="rd6-cz-I9G">
             <objects>
-                <viewController id="VZM-2N-YhJ" sceneMemberID="viewController">
+                <viewController id="VZM-2N-YhJ" customClass="FavoriteMoviesViewController" customModule="WS6_Movie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Qq-5Y-MGG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -77,6 +77,9 @@
                         <viewLayoutGuide key="safeArea" id="sVu-9h-qnX"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="bookmarks" id="JDK-bh-eUV"/>
+                    <connections>
+                        <outlet property="tableView" destination="L8l-W3-Dxg" id="3Ka-ru-pOd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vnu-L3-Fd0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

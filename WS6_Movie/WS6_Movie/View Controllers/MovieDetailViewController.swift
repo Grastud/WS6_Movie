@@ -65,18 +65,17 @@ class MovieDetailViewController: UIViewController {
     }
     
     @IBAction func tapOnButton(_ sender: Any) {
-        let fav = Favorite(value: movie?.title)
         if (fav_label.text=="favorise"){
-            realm.addFavorites(fav: fav)
+            realm.addFavorites(movieTitle: movie?.title ?? "")
             fav_label.text="unfavorise"
         }
-        else if (fav_label.text=="unfavorise") {
+        /*else if (fav_label.text=="unfavorise") {
             realm.removeFavorites(fav: fav)
             fav_label.text="favorise"
         }
         else {
             print("Ups")
-        }
+        }*/
         
     }
     

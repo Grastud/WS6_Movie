@@ -19,6 +19,7 @@ class FavoriteMoviesViewController: UIViewController, UITableViewDataSource, UIT
     
     //var favorites:Results<Favorite>
     
+    @IBOutlet weak var tableView: UITableView!
     
     
     override func viewDidLoad() {
