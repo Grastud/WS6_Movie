@@ -10,34 +10,38 @@ import Foundation
 import RealmSwift
 
 class RealmApi{
-    let realm = try! Realm()
+    
+     let realm = try! Realm()
     
     func addFavorites (movieTitle:String){
-        let fav = Favorite(value:movieTitle)
+       
+        let fav = Favorite()
+        fav.title=movieTitle
         try! realm.write(){
             realm.add(fav)
         }
     }
 
     func removeFavorites (movieTitle:String){
-    
-    let fav = Favorite(value:movieTitle)
-    try! realm.write(){
-        realm.delete(fav)
+       
+        let fav = Favorite()
+        fav.title=movieTitle
+        try! realm.write(){
+            realm.delete(fav)
     }
 }
 
-    func isFavorite (movieTitle:String) -> Bool {
+    /*func isFavorite (movieTitle:String) -> Bool {
+       
         
-        let fav = Favorite(value:movieTitle)
-            if (realm.objects(Favorite.self).contains(fav)){
+            //if (realm.objects(Favorite.self).contains(fav)){
                 return true
         }
             else{
             
                 return false
         }
-        }
+        }*/
     //Damit man die View von Bookmarks füllen kann, die Favoriten nur anzeigen
 var favorites:Results<Favorite>? {
     get {
@@ -48,11 +52,11 @@ var favorites:Results<Favorite>? {
     }
 }
     //Ob die Filme in der Liste des Favoriten sind
-    func findFavorite(title:String)->Favorite? {
+    func findFavorite(movieTitle:String)->Favorite? {
         guard let realm = try? Realm() else {
             return nil
         }
-        let fav = realm.object(ofType: Favorite.self, forPrimaryKey: title)
+        let fav = realm.object(ofType: Favorite.self, forPrimaryKey: movieTitle)
         return fav
     }
     //Ob die Filme schon favorisiert sind??

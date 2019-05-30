@@ -67,8 +67,8 @@ class FavoriteMoviesViewController: UIViewController, UITableViewDataSource, UIT
     
     
     private func loadFavoritedMovies(){
-        let realm = try! Realm()
-        let favorites = realm.objects(Favorite.self)
+        
+        let favorites = realmapi.realm.objects(Favorite.self)
         
         for _ in favorites {
             movies.append(contentsOf: movies)

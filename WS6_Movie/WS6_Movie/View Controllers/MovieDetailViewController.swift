@@ -69,13 +69,11 @@ class MovieDetailViewController: UIViewController {
             realm.addFavorites(movieTitle: movie?.title ?? "")
             fav_label.text="unfavorise"
         }
-        /*else if (fav_label.text=="unfavorise") {
-            realm.removeFavorites(fav: fav)
+        else {
+            realm.removeFavorites(movieTitle: movie?.title ?? "")
             fav_label.text="favorise"
         }
-        else {
-            print("Ups")
-        }*/
+        
         
     }
     
