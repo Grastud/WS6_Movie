@@ -9,6 +9,7 @@
 
 import UIKit
 
+
 class MovieCell: UITableViewCell {
     
     static let nibName = String(describing: MovieCell.self)
