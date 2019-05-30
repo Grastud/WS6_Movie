@@ -20,8 +20,6 @@ struct NetworkManager: Network {
     
     let provider = MoyaProvider<MovieApi>(plugins: [NetworkLoggerPlugin(verbose: false)])
     
-    // get ... movies()
-    
     func getNewMovies(page: Int, completion: @escaping ([Movie])->()){
         provider.request(.newMovies(page: page)) { result in
             switch result {

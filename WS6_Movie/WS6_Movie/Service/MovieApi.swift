@@ -44,7 +44,7 @@ extension MovieApi: TargetType { //
         case .actor:
             return "discover/movie"
         case .searched:
-            return "search/movie"
+            return "search/movie" // https://developers.themoviedb.org/3/search/search-movies
         }
     }
     

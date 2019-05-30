@@ -31,7 +31,6 @@ class MoviesSearchController: UIViewController {
     
     private func loadNewMovies(){
         provider.getNewMovies(page: 1) {[weak self] movies in
-            print("\(movies.count) new movies loaded")
             self?.movies.removeAll()
             self?.movies.append(contentsOf: movies)
             self?.tableView.reloadData()
@@ -42,21 +41,11 @@ class MoviesSearchController: UIViewController {
         provider.getSearchedMovies(page: 1, query: query) {[weak self] movies in
             self?.searchedMovies.removeAll()
             self?.searchedMovies.append(contentsOf: movies)
-            print("\(movies.count) searched movies loaded")
             self?.tableView.reloadData()
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // prepare() should get called by when user clicks on a movie cell
-        // and segue from segue.source (= self) to segue.destination (= MovieDetailViewController)
-        //
-        // for some reason, prepare() is never called - possibly the segue is improperly
-        // set in the IB, or there is some unintended interaction with the switcher
-        //
-        // fix: see tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-        // that programmatically triggers the segue
-        
         super.prepare(for: segue, sender: sender)
         
         guard

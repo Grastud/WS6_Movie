@@ -20,10 +20,6 @@ class MovieDetailViewController: UIViewController {
     */
     
     var movie: Movie?
-
-    @IBOutlet weak var detailScrollView: UIScrollView!
-    @IBOutlet weak var contentView: UIStackView!
-    
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
@@ -41,7 +37,6 @@ class MovieDetailViewController: UIViewController {
             }
         }
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
