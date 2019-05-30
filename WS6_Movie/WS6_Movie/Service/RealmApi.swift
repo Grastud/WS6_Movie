@@ -9,13 +9,15 @@
 import Foundation
 import RealmSwift
 
-func addFavorites (fav: Favorite){
-    let realm = try! Realm()
-    let fav = Favorite()
-    try! realm.write(){
-        realm.add(fav)
+class RealmApi{
+    
+    func addFavorites (fav: Favorite){
+        let realm = try! Realm()
+        let fav = Favorite()
+        try! realm.write(){
+            realm.add(fav)
+        }
     }
-}
 
 func removeFavorites (fav: Favorite){
     let realm = try! Realm()
@@ -25,6 +27,17 @@ func removeFavorites (fav: Favorite){
     }
 }
 
+    func currentFavorite (fav: Favorite) -> Favorite{
+        let realm = try! Realm()
+            if let fav = realm.objects(Favorite.self).first{
+                return currentFavorite(fav: fav)
+        }
+            else{
+            //if no favorite was found -> add one
+                addFavorites(fav: fav)
+        }
+    return fav
+    }
 var favorites:Results<Favorite>? {
     get {
         guard let realm = try? Realm() else {
@@ -32,4 +45,6 @@ var favorites:Results<Favorite>? {
         }
         return realm.objects(Favorite.self)
     }
+}
+    
 }
