@@ -63,6 +63,7 @@ extension ActorsViewController: UITableViewDataSource, UITableViewDelegate {
         
         let actor = actors[indexPath.row]
         cell.titleLabel.text = actor.name
+        cell.profileImage.kf.setImage(with: actor.fullProfileURL, placeholder: UIImage(named:"default_poster"))
         
         return cell
     }

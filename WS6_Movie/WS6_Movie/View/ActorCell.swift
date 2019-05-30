@@ -13,6 +13,7 @@ class ActorCell: UITableViewCell {
     static let nibName = String(describing: ActorCell.self)
     static let reuseIdentifier = String(describing: ActorCell.self)
     
+    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
 
 }

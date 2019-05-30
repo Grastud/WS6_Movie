@@ -22,11 +22,14 @@ class ActorDetailViewController: UIViewController {
     var actor: Actor?
     
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         nameLabel.text = actor?.name
+        
+        profileImage.kf.setImage(with: actor?.fullProfileURL, placeholder: UIImage(named:"default_backdrop"))
     }
     
     /*
