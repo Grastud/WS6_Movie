@@ -76,5 +76,23 @@ struct NetworkManager: Network {
                 print(error)
             }
         }
-    }    
+    }
+    
+    func getSearchedMovies(page: Int, query: String, completion: @escaping ([Movie])->()){
+        provider.request(.searched(page: page, query: query)) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    let results = try JSONDecoder().decode(MovieResult.self, from: response.data)
+                    completion(results.movies)
+                } catch let err {
+                    print(err)
+                    print("Searched: page: \(page)")
+                    print(response.data)
+                }
+            case let .failure(error):
+                print(error)
+            }
+        }
+    }
 }

@@ -15,6 +15,7 @@ enum MovieApi {
     case popular(page: Int)
     case recommended(id: Int)
     case actor(ids: [Int])
+    case searched(page: Int, query: String)
 }
 
 // https://www.themoviedb.org/documentation/api
@@ -42,6 +43,8 @@ extension MovieApi: TargetType { //
             return "movie/\(id)/recommendations"
         case .actor:
             return "discover/movie"
+        case .searched:
+            return "search/movie"
         }
     }
     
@@ -58,10 +61,12 @@ extension MovieApi: TargetType { //
         case .newMovies(let page), .upcoming(let page), .popular(let page):
             return .requestParameters(parameters: ["page":page, "api_key": NetworkManager.MovieAPIKey], encoding: URLEncoding.queryString)
         case .recommended:
-            return .requestParameters(parameters: ["api_key":  NetworkManager.MovieAPIKey], encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: ["api_key": NetworkManager.MovieAPIKey], encoding: URLEncoding.queryString)
         case .actor(let ids):
             let params = ids.map({"\($0)"}).joined(separator: ",")
             return .requestParameters(parameters: ["api_key": NetworkManager.MovieAPIKey, "with_people": params], encoding: URLEncoding.queryString)
+        case .searched(let page, let query):
+            return .requestParameters(parameters: ["page": page, "api_key": NetworkManager.MovieAPIKey, "query": query], encoding: URLEncoding.queryString)
         }
     }
     
