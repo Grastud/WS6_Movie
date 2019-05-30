@@ -49,6 +49,7 @@ class MovieDetailViewController: UIViewController {
         titleLabel.text = movie?.title
         releaseDateLabel.text = movie?.releaseDate
         descriptionLabel.text = movie?.overview
+        descriptionLabel.sizeToFit()
         
         backdropView.kf.setImage(with: movie?.fullBackdropURL, placeholder: UIImage(named:"default_backdrop"))
     }
