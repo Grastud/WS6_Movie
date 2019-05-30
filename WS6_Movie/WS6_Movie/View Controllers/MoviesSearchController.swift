@@ -46,6 +46,32 @@ class MoviesSearchController: UIViewController {
             self?.tableView.reloadData()
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // prepare() should get called by when user clicks on a movie cell
+        // and segue from segue.source (= self) to segue.destination (= MovieDetailViewController)
+        //
+        // for some reason, prepare() is never called - possibly the segue is improperly
+        // set in the IB, or there is some unintended interaction with the switcher
+        //
+        // fix: see tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+        // that programmatically triggers the segue
+        
+        super.prepare(for: segue, sender: sender)
+        
+        guard
+            let movieDetailViewController = segue.destination as? MovieDetailViewController,
+            let row = tableView.indexPathForSelectedRow?.row
+            else {
+                return
+            }
+        
+        if(searching) {
+            movieDetailViewController.movie = searchedMovies[row]
+        } else {
+            movieDetailViewController.movie = movies[row]
+        }
+    }
 }
 
 extension MoviesSearchController: UITableViewDataSource, UITableViewDelegate {
@@ -71,6 +97,15 @@ extension MoviesSearchController: UITableViewDataSource, UITableViewDelegate {
         cell.posterImageView.kf.setImage(with: movie.fullPosterURL)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // programmatically perform the segue; see prepare()
+        //
+        // https://developer.apple.com/documentation/uikit/uiviewcontroller/1621413-performSegueWithIdentifier
+        // Normally, segues are initiated automatically and not using this method. However, you can use this method in cases where the segue could not be configured in your storyboard file. For example, you might call it from a custom action handler used in response to shake or accelerometer events.
+        
+        performSegue(withIdentifier: "fromSearchToMovie", sender: self) // -> prepare()
     }
 }
 
