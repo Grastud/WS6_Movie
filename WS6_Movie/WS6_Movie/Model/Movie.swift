@@ -11,7 +11,6 @@ import Foundation
 struct Movie{
     let id: Int
     let posterPath: String
-    //let videoPath: String
     let backdrop: String
     let title: String
     let releaseDate: String
@@ -20,12 +19,20 @@ struct Movie{
     
     var fullPosterURL:URL?{
         get{
-            return URL(string: "https://image.tmdb.org/t/p/w500" + posterPath)
+            if(posterPath.isEmpty) {
+                return nil
+            } else {
+                return URL(string: "https://image.tmdb.org/t/p/w500" + posterPath)
+            }
         }
     }
     var fullBackdropURL:URL?{
         get{
-            return URL(string: "https://image.tmdb.org/t/p/w780" + backdrop)
+            if(backdrop.isEmpty) {
+                return nil
+            } else {
+                return URL(string: "https://image.tmdb.org/t/p/w780" + backdrop)
+            }
         }
     }
 }

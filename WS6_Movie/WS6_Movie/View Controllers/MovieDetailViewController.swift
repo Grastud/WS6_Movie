@@ -50,7 +50,7 @@ class MovieDetailViewController: UIViewController {
         releaseDateLabel.text = movie?.releaseDate
         descriptionLabel.text = movie?.overview
         
-        backdropView.kf.setImage(with: movie?.fullBackdropURL)
+        backdropView.kf.setImage(with: movie?.fullBackdropURL, placeholder: UIImage(named:"default_backdrop"))
     }
 
     /*

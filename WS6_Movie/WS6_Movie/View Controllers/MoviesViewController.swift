@@ -115,7 +115,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         let movie = movies[indexPath.row]
         cell.titleLabel.text = movie.title
         cell.overviewLabel.text = movie.overview
-        cell.posterImageView.kf.setImage(with: movie.fullPosterURL)
+        cell.posterImageView.kf.setImage(with: movie.fullPosterURL, placeholder: UIImage(named:"default_poster"))
         
         return cell
     }
