@@ -23,6 +23,7 @@
 		C764FF8C22A0146A00399153 /* ActorResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C764FF8B22A0146A00399153 /* ActorResult.swift */; };
 		C764FF8E22A0153D00399153 /* ActorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C764FF8D22A0153D00399153 /* ActorsViewController.swift */; };
 		C764FF9022A01BBA00399153 /* ActorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C764FF8F22A01BBA00399153 /* ActorDetailViewController.swift */; };
+		C764FF9222A0266800399153 /* ActorDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C764FF9122A0266800399153 /* ActorDetails.swift */; };
 		C7805B5522525BC4007AB4B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7805B5422525BC4007AB4B8 /* AppDelegate.swift */; };
 		C7805B5A22525BC4007AB4B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7805B5822525BC4007AB4B8 /* Main.storyboard */; };
 		C7805B5C22525BC6007AB4B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7805B5B22525BC6007AB4B8 /* Assets.xcassets */; };
@@ -63,6 +64,7 @@
 		C764FF8B22A0146A00399153 /* ActorResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorResult.swift; sourceTree = "<group>"; };
 		C764FF8D22A0153D00399153 /* ActorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorsViewController.swift; sourceTree = "<group>"; };
 		C764FF8F22A01BBA00399153 /* ActorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorDetailViewController.swift; sourceTree = "<group>"; };
+		C764FF9122A0266800399153 /* ActorDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorDetails.swift; sourceTree = "<group>"; };
 		C7805B5122525BC4007AB4B8 /* WS6_Movie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WS6_Movie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7805B5422525BC4007AB4B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7805B5922525BC4007AB4B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				22E02E63228B46C800F4548F /* MovieResult.swift */,
 				C764FF8B22A0146A00399153 /* ActorResult.swift */,
 				C764FF8922A0137400399153 /* Actor.swift */,
+				C764FF9122A0266800399153 /* ActorDetails.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				C764FF9022A01BBA00399153 /* ActorDetailViewController.swift in Sources */,
 				22B31EDF226CC89800C3E2ED /* MoviesViewController.swift in Sources */,
 				C713EF5722904A54004E7703 /* MoviesSearchController.swift in Sources */,
+				C764FF9222A0266800399153 /* ActorDetails.swift in Sources */,
 				22E02E64228B46C800F4548F /* MovieResult.swift in Sources */,
 				226A8EE1228B530700159903 /* MovieApi.swift in Sources */,
 				229162D422836E010062F4D8 /* MovieDetailViewController.swift in Sources */,

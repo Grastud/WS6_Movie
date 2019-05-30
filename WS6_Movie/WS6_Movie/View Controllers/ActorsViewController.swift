@@ -40,7 +40,7 @@ class ActorsViewController: UIViewController {
                 return
         }
         
-        actorDetailViewController.actor = actors[row]
+        actorDetailViewController.id = actors[row].id
     }
     
     private func loadPopularActors(){

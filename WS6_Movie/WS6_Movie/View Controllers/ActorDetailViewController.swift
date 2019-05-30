@@ -9,27 +9,36 @@
 import UIKit
 
 class ActorDetailViewController: UIViewController {
+    private let provider = NetworkManager()
     
-    /*
-     To pass 'data' (= an actor) from the ActorViewController to the ActorDetailViewController
-     when a row is selected in the table view using prepare(), the destination controller needs to declare
-     a public stored property (= a movie) to hold the data.
-     In ActorViewController: array of actors, i.e. array of NSDictionary
-     In ActorDetailViewController: a single actor, i.e. a NSDictionary; since it can only receive data
-     after initialization, the actor property must be optional
-     */
-    
-    var actor: Actor?
+    var id: Int?
+    var actorDetails: ActorDetails?
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var biographyLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nameLabel.text = actor?.name
+        loadActor()
         
-        profileImage.kf.setImage(with: actor?.fullProfileURL, placeholder: UIImage(named:"default_backdrop"))
+        updateTexts()
+        biographyLabel.sizeToFit()
+        
+    }
+    
+    private func updateTexts(){
+        nameLabel.text = actorDetails?.name
+        biographyLabel.text = actorDetails?.biography
+        profileImage.kf.setImage(with: actorDetails?.fullProfileURL, placeholder: UIImage(named:"default_backdrop"))
+    }
+    
+    private func loadActor(){
+        provider.getActor(id: id ?? 0) {[weak self] (actoring: ActorDetails) in
+            self?.actorDetails = actoring
+            self?.updateTexts()
+        }
     }
     
     /*

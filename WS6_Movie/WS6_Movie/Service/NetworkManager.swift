@@ -111,4 +111,22 @@ struct NetworkManager: Network {
             }
         }
     }
+    
+    func getActor(id: Int, completion: @escaping (ActorDetails)->()){
+        provider.request(.actor(id: id)) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    print("Responste from getActor: \(response)")
+                    let results = try JSONDecoder().decode(ActorDetails.self, from: response.data)
+                    completion(results)
+                } catch let err {
+                    print(err)
+                    print(response.data)
+                }
+            case let .failure(error):
+                print(error)
+            }
+        }
+    }
 }

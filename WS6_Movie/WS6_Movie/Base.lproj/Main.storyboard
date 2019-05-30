@@ -183,14 +183,14 @@
             <objects>
                 <viewController id="wzJ-du-3jI" customClass="ActorDetailViewController" customModule="WS6_Movie" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mww-eL-LUz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZHY-zJ-Pe1">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="687"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NqR-su-w58">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="524.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Les-Jg-neY">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="450"/>
@@ -204,14 +204,24 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ID-yT-SVt">
+                                                <rect key="frame" x="20" y="496" width="335" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="3ID-yT-SVt" firstAttribute="top" secondItem="nM3-i1-jHU" secondAttribute="bottom" constant="8" id="GYG-jQ-eDA"/>
                                             <constraint firstItem="Les-Jg-neY" firstAttribute="top" secondItem="NqR-su-w58" secondAttribute="top" id="ITa-aM-khl"/>
                                             <constraint firstItem="nM3-i1-jHU" firstAttribute="leading" secondItem="NqR-su-w58" secondAttribute="leading" constant="20" id="Zkn-V8-qcf"/>
                                             <constraint firstItem="Les-Jg-neY" firstAttribute="leading" secondItem="NqR-su-w58" secondAttribute="leading" id="cw6-jM-yjR"/>
                                             <constraint firstAttribute="trailing" secondItem="Les-Jg-neY" secondAttribute="trailing" id="flc-nK-nde"/>
                                             <constraint firstItem="nM3-i1-jHU" firstAttribute="top" secondItem="Les-Jg-neY" secondAttribute="bottom" constant="8" id="n1b-Vz-o1P"/>
+                                            <constraint firstAttribute="trailing" secondItem="3ID-yT-SVt" secondAttribute="trailing" constant="20" id="nUU-qr-KvB"/>
                                             <constraint firstAttribute="trailing" secondItem="nM3-i1-jHU" secondAttribute="trailing" constant="20" id="ngj-V2-b4h"/>
+                                            <constraint firstAttribute="bottom" secondItem="3ID-yT-SVt" secondAttribute="bottom" constant="8" id="qAp-Ho-011"/>
+                                            <constraint firstItem="3ID-yT-SVt" firstAttribute="leading" secondItem="NqR-su-w58" secondAttribute="leading" constant="20" id="sVX-nb-4ou"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -234,15 +244,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cV4-GJ-3wF"/>
                     </view>
-                    <size key="freeformSize" width="375" height="667"/>
+                    <size key="freeformSize" width="375" height="800"/>
                     <connections>
+                        <outlet property="biographyLabel" destination="3ID-yT-SVt" id="OJJ-9V-OtQ"/>
                         <outlet property="nameLabel" destination="nM3-i1-jHU" id="oie-cU-qWr"/>
                         <outlet property="profileImage" destination="Les-Jg-neY" id="hRH-SB-gFs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iag-Vq-T23" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1581.5999999999999" y="2427.4362818590707"/>
+            <point key="canvasLocation" x="1581.5999999999999" y="2426.9865067466267"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="oT7-yk-GLl">
