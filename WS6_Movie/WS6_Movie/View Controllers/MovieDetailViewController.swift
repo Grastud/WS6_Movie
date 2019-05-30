@@ -20,6 +20,7 @@ class MovieDetailViewController: UIViewController {
     */
     
     var movie: Movie?
+    let realm = RealmApi()
 
     @IBOutlet weak var detailScrollView: UIScrollView!
     @IBOutlet weak var contentView: UIStackView!
@@ -29,6 +30,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet private weak var posterHeight: NSLayoutConstraint!
+    @IBOutlet weak var fav_star: UIButton!
     
     @IBOutlet weak var backdropView: UIImageView! {
         didSet {
@@ -51,6 +53,17 @@ class MovieDetailViewController: UIViewController {
         descriptionLabel.text = movie?.overview
         
         backdropView.kf.setImage(with: movie?.fullBackdropURL)
+        
+        
+        
+    }
+    
+    //@IBAction func tapOnButton(_ sender: Any) {
+    //    realm.addFavorites(fav)
+        
+   // }
+    
+    
     }
 
     /*
@@ -71,4 +84,4 @@ class MovieDetailViewController: UIViewController {
     }
  */
     
-}
+
