@@ -125,11 +125,11 @@
             </objects>
             <point key="canvasLocation" x="617" y="1680"/>
         </scene>
-        <!--Actor-->
+        <!--Actors-->
         <scene sceneID="Nts-mJ-rGz">
             <objects>
                 <navigationController id="8HW-vS-d4w" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Actor" id="Sst-3A-Jx1"/>
+                    <tabBarItem key="tabBarItem" title="Actors" image="actors" id="Sst-3A-Jx1"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="zVh-Cv-szD">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -484,6 +484,9 @@
             <point key="canvasLocation" x="-311" y="1680"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="actors" width="30" height="30"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="iOD-YW-3dU"/>
     </inferredMetricsTieBreakers>
