@@ -18,6 +18,8 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var taglineLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var budgetLabel: UILabel!
+    @IBOutlet weak var revenueLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet private weak var posterHeight: NSLayoutConstraint!
     
@@ -48,9 +50,19 @@ class MovieDetailViewController: UIViewController {
         titleLabel.text = movieDetails?.title
         taglineLabel.text = movieDetails?.tagline
         releaseDateLabel.text = movieDetails?.releaseDate
+        budgetLabel.text = getCurrencyString(amount: movieDetails?.budget ?? 0, localizer: "en_US")
+        revenueLabel.text = getCurrencyString(amount: movieDetails?.revenue ?? 0, localizer: "en_US")
         descriptionLabel.text = movieDetails?.overview
         backdropView.kf.setImage(with: movieDetails?.fullBackdropURL, placeholder: UIImage(named:"default_backdrop"))
         updateFavoriteLabel()
+    }
+    
+    private func getCurrencyString(amount: Int, localizer: String) -> String {
+        // Source: https://supereasyapps.com/blog/2016/2/8/how-to-use-nsnumberformatter-in-swift-to-make-currency-numbers-easy-to-read
+        let currencyFormatter = NumberFormatter()
+        currencyFormatter.numberStyle = .currency
+        currencyFormatter.locale = Locale(identifier: localizer)
+        return currencyFormatter.string(from: NSNumber(value: amount))!
     }
     
     private func loadMovieDetails(){
