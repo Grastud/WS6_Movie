@@ -129,4 +129,22 @@ struct NetworkManager: Network {
             }
         }
     }
+    
+    func getMovie(id: Int, completion: @escaping (MovieDetails)->()){
+        provider.request(.movie(id: id)) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    print("Responste from getMovie: \(response)")
+                    let results = try JSONDecoder().decode(MovieDetails.self, from: response.data)
+                    completion(results)
+                } catch let err {
+                    print(err)
+                    print(response.data)
+                }
+            case let .failure(error):
+                print(error)
+            }
+        }
+    }
 }

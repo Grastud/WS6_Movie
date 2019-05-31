@@ -41,7 +41,7 @@ class MoviesViewController: UIViewController {
                 return
             }
         
-        movieDetailViewController.movie = movies[row]
+        movieDetailViewController.id = movies[row].id
     }
     
     @IBAction func listSwitcherChanged(_ sender: Any) {
@@ -82,6 +82,7 @@ class MoviesViewController: UIViewController {
 }
 
 extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
@@ -105,4 +106,5 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
         
         performSegue(withIdentifier: "fromMoviesToMovie", sender: self)
     }
+    
 }

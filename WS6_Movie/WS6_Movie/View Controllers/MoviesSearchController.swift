@@ -56,9 +56,9 @@ class MoviesSearchController: UIViewController {
             }
         
         if(searching) {
-            movieDetailViewController.movie = searchedMovies[row]
+            movieDetailViewController.id = searchedMovies[row].id
         } else {
-            movieDetailViewController.movie = movies[row]
+            movieDetailViewController.id = movies[row].id
         }
     }
 }
@@ -96,6 +96,7 @@ extension MoviesSearchController: UITableViewDataSource, UITableViewDelegate {
         
         performSegue(withIdentifier: "fromSearchToMovie", sender: self) // -> prepare()
     }
+    
 }
 
 extension MoviesSearchController: UISearchBarDelegate {

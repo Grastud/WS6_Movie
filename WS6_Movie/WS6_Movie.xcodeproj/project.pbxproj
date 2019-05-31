@@ -29,6 +29,7 @@
 		C764FF8E22A0153D00399153 /* ActorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C764FF8D22A0153D00399153 /* ActorsViewController.swift */; };
 		C764FF9022A01BBA00399153 /* ActorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C764FF8F22A01BBA00399153 /* ActorDetailViewController.swift */; };
 		C764FF9222A0266800399153 /* ActorDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C764FF9122A0266800399153 /* ActorDetails.swift */; };
+		C764FF9722A156A100399153 /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = C764FF9622A156A100399153 /* MovieDetails.swift */; };
 		C7805B5522525BC4007AB4B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7805B5422525BC4007AB4B8 /* AppDelegate.swift */; };
 		C7805B5A22525BC4007AB4B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7805B5822525BC4007AB4B8 /* Main.storyboard */; };
 		C7805B5C22525BC6007AB4B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7805B5B22525BC6007AB4B8 /* Assets.xcassets */; };
@@ -75,6 +76,7 @@
 		C764FF8D22A0153D00399153 /* ActorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorsViewController.swift; sourceTree = "<group>"; };
 		C764FF8F22A01BBA00399153 /* ActorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorDetailViewController.swift; sourceTree = "<group>"; };
 		C764FF9122A0266800399153 /* ActorDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorDetails.swift; sourceTree = "<group>"; };
+		C764FF9622A156A100399153 /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		C7805B5122525BC4007AB4B8 /* WS6_Movie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WS6_Movie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7805B5422525BC4007AB4B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7805B5922525BC4007AB4B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 		22E02E5D228B448200F4548F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C764FF9622A156A100399153 /* MovieDetails.swift */,
 				22E02E61228B461800F4548F /* Movie.swift */,
 				22E02E63228B46C800F4548F /* MovieResult.swift */,
 				C764FF8B22A0146A00399153 /* ActorResult.swift */,
@@ -411,6 +414,7 @@
 				C764FF8C22A0146A00399153 /* ActorResult.swift in Sources */,
 				22E02E66228B49AE00F4548F /* NetworkManager.swift in Sources */,
 				22E02E62228B461800F4548F /* Movie.swift in Sources */,
+				C764FF9722A156A100399153 /* MovieDetails.swift in Sources */,
 				3F48EDDF22A096DD0030D309 /* LocalMovieCell.swift in Sources */,
 				3F48EDDC22A032F30030D309 /* FavoriteMoviesViewController.swift in Sources */,
 				3F48EDDA22A014E80030D309 /* RealmApi.swift in Sources */,
@@ -592,7 +596,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 34VU6MK68Q;
+				DEVELOPMENT_TEAM = VNZRSDP7HP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
@@ -617,7 +621,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 34VU6MK68Q;
+				DEVELOPMENT_TEAM = VNZRSDP7HP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",

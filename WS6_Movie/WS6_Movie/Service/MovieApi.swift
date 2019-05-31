@@ -17,6 +17,7 @@ enum MovieApi {
     case actor(id: Int)
     case searched(page: Int, query: String)
     case popularActors(page: Int)
+    case movie(id: Int)
 }
 
 // https://www.themoviedb.org/documentation/api
@@ -48,6 +49,8 @@ extension MovieApi: TargetType { //
             return "search/movie" // https://developers.themoviedb.org/3/search/search-movies
         case .popularActors:
             return "/person/popular"
+        case .movie(let id):
+            return "/movie/\(id)"
         }
     }
     
@@ -69,6 +72,8 @@ extension MovieApi: TargetType { //
             return .requestParameters(parameters: ["page": page, "api_key": NetworkManager.MovieAPIKey, "query": query], encoding: URLEncoding.queryString)
         case .actor(let id):
             return .requestParameters(parameters: ["person_id": id, "api_key": NetworkManager.MovieAPIKey], encoding: URLEncoding.queryString)
+        case .movie(let id):
+            return .requestParameters(parameters: ["movie_id": id, "api_key": NetworkManager.MovieAPIKey], encoding: URLEncoding.queryString)
         }
     }
     

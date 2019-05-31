@@ -15,11 +15,8 @@ class MovieCell: UITableViewCell {
     static let nibName = String(describing: MovieCell.self)
     static let reuseIdentifier = String(describing: MovieCell.self)
     
-    
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var posterImageView: UIImageView!
     
-
 }

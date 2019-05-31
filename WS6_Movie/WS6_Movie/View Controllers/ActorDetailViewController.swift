@@ -39,20 +39,10 @@ class ActorDetailViewController: UIViewController {
     }
     
     private func loadActor(){
-        provider.getActor(id: id ?? 0) {[weak self] (actoring: ActorDetails) in
-            self?.actorDetails = actoring
+        provider.getActor(id: id ?? 0) {[weak self] (actor: ActorDetails) in
+            self?.actorDetails = actor
             self?.updateTexts()
         }
     }
-    
-    /*
-     // MARK: - Navigation
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 

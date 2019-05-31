@@ -9,20 +9,14 @@
 import UIKit
 
 class MovieDetailViewController: UIViewController {
+    private let provider = NetworkManager()
     
-    /*
-     To pass 'data' (= a movie) from the MoviesViewController to the MovieDetailViewController
-     when a row is selected in the table view using prepare(), the destination controller needs to declare
-     a public stored property (= a movie) to hold the data.
-     In MoviesViewController: array of movies, i.e. array of NSDictionary
-     In MovieDetailViewController: a single movie, i.e. a NSDictionary; since it can only receive data
-     after initialization, the movie property must be optional
-    */
-    
-    var movie: Movie?
+    var id: Int?
+    var movieDetails: MovieDetails?
     let realm = RealmApi()
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var taglineLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet private weak var posterHeight: NSLayoutConstraint!
@@ -43,30 +37,41 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        titleLabel.text = movie?.title
-        releaseDateLabel.text = movie?.releaseDate
-        descriptionLabel.text = movie?.overview
+        loadMovieDetails()
         
         titleLabel.sizeToFit()
+        taglineLabel.sizeToFit()
         descriptionLabel.sizeToFit()
-        
+    }
+    
+    private func updateTexts() {
+        titleLabel.text = movieDetails?.title
+        taglineLabel.text = movieDetails?.tagline
+        releaseDateLabel.text = movieDetails?.releaseDate
+        descriptionLabel.text = movieDetails?.overview
+        backdropView.kf.setImage(with: movieDetails?.fullBackdropURL, placeholder: UIImage(named:"default_backdrop"))
         updateFavoriteLabel()
-        
-        backdropView.kf.setImage(with: movie?.fullBackdropURL, placeholder: UIImage(named:"default_backdrop"))
+    }
+    
+    private func loadMovieDetails(){
+        provider.getMovie(id: id ?? 0) {[weak self] (movie: MovieDetails) in
+            self?.movieDetails = movie
+            self?.updateTexts()
+        }
     }
     
     @IBAction func tapOnButton(_ sender: Any) {
-        if (realm.isFavorite(id: movie?.id ?? 0)){
-            realm.removeFavorites(id: movie?.id ?? 0)
+        if (realm.isFavorite(id: movieDetails?.id ?? 0)){
+            realm.removeFavorites(id: movieDetails?.id ?? 0)
         } else {
-            realm.addFavorites(id: movie?.id ?? 0, movieTitle: movie?.title ?? "")
+            realm.addFavorites(id: movieDetails?.id ?? 0, movieTitle: movieDetails?.title ?? "")
         }
         
         updateFavoriteLabel()
     }
     
     func updateFavoriteLabel(){
-        if (realm.isFavorite(id: movie?.id ?? 0)){
+        if (realm.isFavorite(id: movieDetails?.id ?? 0)){
             fav_star.setImage(UIImage(named: "star_filled"), for: UIControl.State.normal)
         }
         else {
@@ -74,6 +79,3 @@ class MovieDetailViewController: UIViewController {
         }
     }
 }
-
-
-
