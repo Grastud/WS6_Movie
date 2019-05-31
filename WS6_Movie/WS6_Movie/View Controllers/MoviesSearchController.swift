@@ -108,4 +108,15 @@ extension MoviesSearchController: UISearchBarDelegate {
         tableView.reloadData()
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searching = false
+        searchBar.text = ""
+        searchBar.endEditing(true)
+        tableView.reloadData()
+    }
+    
 }
