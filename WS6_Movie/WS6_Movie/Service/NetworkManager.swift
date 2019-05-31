@@ -20,13 +20,13 @@ struct NetworkManager: Network {
     
     let provider = MoyaProvider<MovieApi>(plugins: [NetworkLoggerPlugin(verbose: false)])
     
-    func getNewMovies(page: Int, completion: @escaping ([Movie])->()){
+    func getNewMovies(page: Int, completion: @escaping (MovieResult)->()){
         provider.request(.newMovies(page: page)) { result in
             switch result {
             case let .success(response):
                 do {
-                    let results = try JSONDecoder().decode(MovieResult.self, from: response.data)
-                    completion(results.movies)
+                    let result = try JSONDecoder().decode(MovieResult.self, from: response.data)
+                    completion(result)
                 } catch let err {
                     print(err)
                 }
@@ -36,39 +36,17 @@ struct NetworkManager: Network {
         }
     }
     
-    func getUpcomingMovies(page: Int, completion: @escaping ([Movie])->()){
+    func getUpcomingMovies(page: Int, completion: @escaping (MovieResult)->()){
         provider.request(.upcomingMovies(page: page)) { result in
             switch result {
             case let .success(response):
                 do {
-                    let results = try JSONDecoder().decode(MovieResult.self, from: response.data)
-                    completion(results.movies)
+                    let result = try JSONDecoder().decode(MovieResult.self, from: response.data)
+                    completion(result)
                 } catch let err {
                     print(err)
-                    
-                    // exception raised in MovieResult \ int() \ movies = try container.decode([Movie].self, forKey: .movies)
                     print("Upcoming: page: \(page)")
                     print(response.data)
-                }
-            case let .failure(error):
-                print(error)
-            }
-        }
-    }    
-    
-    func getPopularMovies(page: Int, completion: @escaping ([Movie])->()){
-        provider.request(.popularMovies(page: page)) { result in
-            switch result {
-            case let .success(response):
-                do {
-                    let results = try JSONDecoder().decode(MovieResult.self, from: response.data)
-                    completion(results.movies)
-                } catch let err {
-                    print(err)
-                    
-                    // exception raised in MovieResult \ int() \ movies = try container.decode([Movie].self, forKey: .movies)
-                    print("Popular: page: \(page)")
-                    print(response.data)                    
                 }
             case let .failure(error):
                 print(error)

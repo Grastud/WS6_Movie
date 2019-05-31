@@ -63,15 +63,17 @@ class MoviesViewController: UIViewController {
     }
     
     private func loadNewMovies(){
-        provider.getNewMovies(page: currentPageNew) {[weak self] movies in
-            self?.newMovies.append(contentsOf: movies)
+        provider.getNewMovies(page: currentPageNew) {[weak self] movieResult in
+            self?.newMovies.append(contentsOf: movieResult.movies)
+            self?.totalPagesNew = movieResult.numberOfPages
             self?.tableView.reloadData()
         }
     }
     
     private func loadUpcomingMovies(){
-        provider.getUpcomingMovies(page: currentPageUpcoming) {[weak self] movies in
-            self?.upcomingMovies.append(contentsOf: movies)
+        provider.getUpcomingMovies(page: currentPageUpcoming) {[weak self] movieResult in
+            self?.upcomingMovies.append(contentsOf: movieResult.movies)
+            self?.totalPagesUpcoming = movieResult.numberOfPages
             self?.tableView.reloadData()
         }
     }

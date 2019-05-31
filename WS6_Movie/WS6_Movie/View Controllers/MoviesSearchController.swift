@@ -31,13 +31,14 @@ class MoviesSearchController: UIViewController {
         tableView.delegate = self
         tableView.register(UINib(nibName: MovieCell.nibName, bundle: Bundle.main), forCellReuseIdentifier: MovieCell.reuseIdentifier)
 
-        // display new movies as a default list on the search page
+        // display new movies as a default list when no search is active
         loadNewMovies()
     }
     
     private func loadNewMovies(){
-        provider.getNewMovies(page: currentPageNew) {[weak self] movies in
-            self?.newMovies.append(contentsOf: movies)
+        provider.getNewMovies(page: currentPageNew) {[weak self] movieResult in
+            self?.newMovies.append(contentsOf: movieResult.movies)
+            self?.totalPagesNew = movieResult.numberOfPages
             self?.tableView.reloadData()
         }
     }
