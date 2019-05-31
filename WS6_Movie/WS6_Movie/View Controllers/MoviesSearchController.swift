@@ -14,6 +14,11 @@ class MoviesSearchController: UIViewController {
     var searchedMovies = [Movie]()
     var searching = false
     
+    var currentPageSearch = 1
+    var totalPagesSearch = 1
+    var currentPageNew = 1
+    var totalPagesNew = 1
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -26,22 +31,22 @@ class MoviesSearchController: UIViewController {
         tableView.delegate = self
         tableView.register(UINib(nibName: MovieCell.nibName, bundle: Bundle.main), forCellReuseIdentifier: MovieCell.reuseIdentifier)
 
-        // display new movies as a default list on the search page
+        // display new movies as a default list when no search is active
         loadNewMovies()
     }
     
     private func loadNewMovies(){
-        provider.getNewMovies(page: 1) {[weak self] movies in
-            self?.newMovies.removeAll()
-            self?.newMovies.append(contentsOf: movies)
+        provider.getNewMovies(page: currentPageNew) {[weak self] movieResult in
+            self?.newMovies.append(contentsOf: movieResult.movies)
+            self?.totalPagesNew = movieResult.numberOfPages
             self?.tableView.reloadData()
         }
     }
     
     func loadSearchedMovies(query: String){
-        provider.getSearchedMovies(page: 1, query: query) {[weak self] movies in
-            self?.searchedMovies.removeAll()
-            self?.searchedMovies.append(contentsOf: movies)
+        provider.getSearchedMovies(page: currentPageSearch, query: query) {[weak self] movieResult in
+            self?.searchedMovies.append(contentsOf: movieResult.movies)
+            self?.totalPagesSearch = movieResult.numberOfPages
             self?.tableView.reloadData()
         }
     }
@@ -77,16 +82,29 @@ extension MoviesSearchController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieCell.reuseIdentifier, for: indexPath) as! MovieCell
         
-        var movie = newMovies[indexPath.row]
-        if(searching) {
-            movie = searchedMovies[indexPath.row]
-        }
-
+        let movie = getMovieOfCell(row: indexPath.row)
+        
         cell.titleLabel.text = movie.title
         cell.overviewLabel.text = movie.overview
         cell.posterImageView.kf.setImage(with: movie.fullPosterURL, placeholder: UIImage(named:"default_poster"))
         
         return cell
+    }
+    
+    private func getMovieOfCell(row: Int) -> Movie {
+        if(searching) {
+            if((row >= searchedMovies.count - 1) && (currentPageSearch < totalPagesSearch)) {
+                currentPageSearch += 1
+                loadSearchedMovies(query: searchBar.text ?? "")
+            }
+            return searchedMovies[row]
+        } else {
+            if((row >= newMovies.count - 1) && (currentPageNew < totalPagesNew)) {
+                currentPageNew += 1
+                loadNewMovies()
+            }
+            return newMovies[row]
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -105,6 +123,7 @@ extension MoviesSearchController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searching = !searchText.isEmpty
         if(searching) {
+            searchedMovies.removeAll()
             loadSearchedMovies(query: searchText)
         }
         tableView.reloadData()
