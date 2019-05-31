@@ -18,13 +18,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="zmc-6v-eL3">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="zmc-6v-eL3">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <constraints>
+                            <constraint firstItem="zmc-6v-eL3" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="6wR-ry-uPp"/>
+                            <constraint firstItem="zmc-6v-eL3" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="CDG-yh-V2k"/>
+                            <constraint firstItem="zmc-6v-eL3" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Ezn-wD-Ig4"/>
+                            <constraint firstAttribute="bottom" secondItem="zmc-6v-eL3" secondAttribute="bottom" id="Y6V-vZ-0MD"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
