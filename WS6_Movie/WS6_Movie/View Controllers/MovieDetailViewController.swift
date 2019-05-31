@@ -52,12 +52,13 @@ class MovieDetailViewController: UIViewController {
         descriptionLabel.sizeToFit()
         
         // todo: set text according to whether movie is already favorite or not
-        fav_label.text="favorise"
-        
+        //fav_label.text="favorise"
+        updateLabel()
         backdropView.kf.setImage(with: movie?.fullBackdropURL, placeholder: UIImage(named:"default_backdrop"))
     }
     
     @IBAction func tapOnButton(_ sender: Any) {
+        
         if (fav_label.text == "favorise"){
             realm.addFavorites(movieTitle: movie?.title ?? "")
             fav_label.text = "unfavorise"
@@ -65,6 +66,17 @@ class MovieDetailViewController: UIViewController {
         else {
             realm.removeFavorites(movieTitle: movie?.title ?? "")
             fav_label.text = "favorise"
+        }
+        
+        //updateLabel()
+    }
+    
+    func updateLabel(){
+        if (realm.isFavorite(movieTitle: movie?.title ?? "")){
+            fav_label.text="unfavorise"
+        }
+        else {
+            fav_label.text="favorise"
         }
     }
 }

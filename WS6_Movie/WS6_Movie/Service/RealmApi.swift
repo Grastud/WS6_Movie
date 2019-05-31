@@ -15,12 +15,17 @@ class RealmApi{
     
     func isFavorite(movieTitle:String) -> Bool {
         
-        let fav = realm.object(ofType: Favorite.self, forPrimaryKey: movieTitle)
-        if (fav?.title==movieTitle) {
-            return true
-        }
+        let favorites = realm.objects(Favorite.self)
+        
+        for fav in favorites {
+            if (fav.title==movieTitle) {
+                return true
+            }
         return false
     }
+      return false
+    }
+    
     
     func findFavorite(movieTitle:String) -> Favorite {
         let fav = realm.object(ofType: Favorite.self, forPrimaryKey: movieTitle)
