@@ -11,8 +11,8 @@ import RealmSwift
 
 class Favorite: Object {
     
-    @objc dynamic var id: String = UUID().uuidString
-    @objc dynamic var title: String = ""
+    @objc dynamic var id = 0
+    @objc dynamic var title = ""
     override static func primaryKey() -> String {
         return "id"
     }
