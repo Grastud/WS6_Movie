@@ -41,16 +41,14 @@ extension MovieApi: TargetType { //
             return "movie/upcoming" // https://developers.themoviedb.org/3/movies/get-upcoming
         case .popularMovies:
             return "movie/popular" // https://developers.themoviedb.org/3/movies/get-popular-movies
-        case .recommended(let id):
-            return "movie/\(id)/recommendations"
         case .actor(let id):
-            return "/person/\(id)"
+            return "/person/\(id)" // https://developers.themoviedb.org/3/people/get-person-details
         case .searched:
             return "search/movie" // https://developers.themoviedb.org/3/search/search-movies
         case .popularActors:
-            return "/person/popular"
+            return "/person/popular" // https://developers.themoviedb.org/3/people/get-popular-people
         case .movie(let id):
-            return "/movie/\(id)"
+            return "/movie/\(id)" // https://developers.themoviedb.org/3/movies/get-movie-details
         }
     }
     

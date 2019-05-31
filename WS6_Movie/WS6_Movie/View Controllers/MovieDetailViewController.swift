@@ -61,17 +61,17 @@ class MovieDetailViewController: UIViewController {
     }
     
     @IBAction func tapOnButton(_ sender: Any) {
-        if (realm.isFavorite(id: movieDetails?.id ?? 0)){
-            realm.removeFavorites(id: movieDetails?.id ?? 0)
+        if (realm.isFavoriteMovie(id: movieDetails?.id ?? 0)){
+            realm.removeFavoriteMovie(id: movieDetails?.id ?? 0)
         } else {
-            realm.addFavorites(id: movieDetails?.id ?? 0, movieTitle: movieDetails?.title ?? "")
+            realm.addFavoriteMovie(id: movieDetails?.id ?? 0, movieTitle: movieDetails?.title ?? "", tagline: movieDetails?.tagline ?? "")
         }
         
         updateFavoriteLabel()
     }
     
     func updateFavoriteLabel(){
-        if (realm.isFavorite(id: movieDetails?.id ?? 0)){
+        if (realm.isFavoriteMovie(id: movieDetails?.id ?? 0)){
             fav_star.setImage(UIImage(named: "star_filled"), for: UIControl.State.normal)
         }
         else {

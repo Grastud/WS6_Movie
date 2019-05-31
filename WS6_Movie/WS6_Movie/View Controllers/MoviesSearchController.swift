@@ -10,7 +10,7 @@ import UIKit
 
 class MoviesSearchController: UIViewController {
     private let provider = NetworkManager()
-    var movies = [Movie]()
+    var newMovies = [Movie]()
     var searchedMovies = [Movie]()
     var searching = false
     
@@ -26,13 +26,14 @@ class MoviesSearchController: UIViewController {
         tableView.delegate = self
         tableView.register(UINib(nibName: MovieCell.nibName, bundle: Bundle.main), forCellReuseIdentifier: MovieCell.reuseIdentifier)
 
+        // display new movies as a default list on the search page
         loadNewMovies()
     }
     
     private func loadNewMovies(){
         provider.getNewMovies(page: 1) {[weak self] movies in
-            self?.movies.removeAll()
-            self?.movies.append(contentsOf: movies)
+            self?.newMovies.removeAll()
+            self?.newMovies.append(contentsOf: movies)
             self?.tableView.reloadData()
         }
     }
@@ -58,7 +59,7 @@ class MoviesSearchController: UIViewController {
         if(searching) {
             movieDetailViewController.id = searchedMovies[row].id
         } else {
-            movieDetailViewController.id = movies[row].id
+            movieDetailViewController.id = newMovies[row].id
         }
     }
 }
@@ -69,14 +70,14 @@ extension MoviesSearchController: UITableViewDataSource, UITableViewDelegate {
         if(searching) {
             return searchedMovies.count
         } else {
-            return movies.count
+            return newMovies.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieCell.reuseIdentifier, for: indexPath) as! MovieCell
         
-        var movie = movies[indexPath.row]
+        var movie = newMovies[indexPath.row]
         if(searching) {
             movie = searchedMovies[indexPath.row]
         }

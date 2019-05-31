@@ -13,29 +13,30 @@ class RealmApi{
     
     let realm = try! Realm()
     
-    func isFavorite(id: Int) -> Bool {
-        return nil != realm.object(ofType: Favorite.self, forPrimaryKey: id)
+    func isFavoriteMovie(id: Int) -> Bool {
+        return nil != realm.object(ofType: FavoriteMovie.self, forPrimaryKey: id)
     }
     
-    func findFavorite(id: Int) -> Favorite {
-        return realm.object(ofType: Favorite.self, forPrimaryKey: id)!
+    func findFavoriteMovie(id: Int) -> FavoriteMovie {
+        return realm.object(ofType: FavoriteMovie.self, forPrimaryKey: id)!
     }
     
-    func addFavorites (id: Int, movieTitle: String){
-        if (!isFavorite(id: id)) {
-            let fav = Favorite()
-            fav.title = movieTitle
-            fav.id = id
+    func addFavoriteMovie(id: Int, movieTitle: String, tagline: String) {
+        if (!isFavoriteMovie(id: id)) {
+            let favoriteMovie = FavoriteMovie()
+            favoriteMovie.title = movieTitle
+            favoriteMovie.id = id
+            favoriteMovie.tagline = tagline
             try! realm.write(){
-                realm.add(fav)
+                realm.add(favoriteMovie)
             }
         }
     }
     
-    func removeFavorites (id: Int){
-        if (isFavorite(id: id)) {
-            let toDelete = findFavorite(id: id)
-            try! realm.write(){
+    func removeFavoriteMovie (id: Int) {
+        if (isFavoriteMovie(id: id)) {
+            let toDelete = findFavoriteMovie(id: id)
+            try! realm.write() {
                 realm.delete(toDelete)
             }
         }

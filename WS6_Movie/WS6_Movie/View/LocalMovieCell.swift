@@ -14,5 +14,6 @@ class LocalMovieCell: UITableViewCell {
     static let reuseIdentifier = String(describing: LocalMovieCell.self)
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var taglineLabel: UILabel!
     
 }

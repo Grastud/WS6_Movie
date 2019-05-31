@@ -9,10 +9,12 @@
 import Foundation
 import RealmSwift
 
-class Favorite: Object {
+class FavoriteMovie: Object {
     
     @objc dynamic var id = 0
     @objc dynamic var title = ""
+    @objc dynamic var tagline = ""
+    
     override static func primaryKey() -> String {
         return "id"
     }

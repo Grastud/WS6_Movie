@@ -11,7 +11,7 @@ import Kingfisher
 import RealmSwift
 
 class FavoriteMoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    let favorites = RealmApi().realm.objects(Favorite.self)
+    let favorites = RealmApi().realm.objects(FavoriteMovie.self)
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -38,6 +38,7 @@ class FavoriteMoviesViewController: UIViewController, UITableViewDataSource, UIT
         
         let movie = favorites[indexPath.row]
         cell.titleLabel.text = movie.title
+        cell.taglineLabel.text = movie.tagline
         
         return cell
     }
