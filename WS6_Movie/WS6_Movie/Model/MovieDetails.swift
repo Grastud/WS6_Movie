@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MovieDetails{
+struct MovieDetails {
     let id: Int
     let posterPath: String
     let backdrop: String

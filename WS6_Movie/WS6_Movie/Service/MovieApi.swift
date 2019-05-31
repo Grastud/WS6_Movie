@@ -13,7 +13,6 @@ enum MovieApi {
     case newMovies(page: Int)
     case upcomingMovies(page: Int)
     case popularMovies(page: Int)
-    case recommended(id: Int)
     case actor(id: Int)
     case searched(page: Int, query: String)
     case popularActors(page: Int)
@@ -23,7 +22,7 @@ enum MovieApi {
 // https://www.themoviedb.org/documentation/api
 // https://developers.themoviedb.org/3/discover/movie-discover
 
-extension MovieApi: TargetType { //
+extension MovieApi: TargetType {
     
     var baseURL: URL {
         let tmdbApi = "https://api.themoviedb.org/3" // for V4: "https://api.themoviedb.org/4"; requires changes to the API and network services
@@ -64,8 +63,6 @@ extension MovieApi: TargetType { //
         switch self {
         case .newMovies(let page), .upcomingMovies(let page), .popularMovies(let page), .popularActors(let page):
             return .requestParameters(parameters: ["page":page, "api_key": NetworkManager.MovieAPIKey], encoding: URLEncoding.queryString)
-        case .recommended:
-            return .requestParameters(parameters: ["api_key": NetworkManager.MovieAPIKey], encoding: URLEncoding.queryString)
         case .searched(let page, let query):
             return .requestParameters(parameters: ["page": page, "api_key": NetworkManager.MovieAPIKey, "query": query], encoding: URLEncoding.queryString)
         case .actor(let id):
