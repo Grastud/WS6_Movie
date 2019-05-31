@@ -110,7 +110,7 @@ extension MoviesViewController: UITableViewDataSource, UITableViewDelegate {
             return newMovies[row]
         } else {
             if((row >= upcomingMovies.count - 1) && (currentPageUpcoming < totalPagesUpcoming)) {
-                currentPageNew += 1
+                currentPageUpcoming += 1
                 loadUpcomingMovies()
             }
             return upcomingMovies[row]
