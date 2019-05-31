@@ -28,7 +28,6 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet private weak var posterHeight: NSLayoutConstraint!
     
     @IBOutlet weak var fav_star: UIButton!
-    @IBOutlet weak var fav_label: UILabel!
     @IBOutlet weak var backdropView: UIImageView! {
         didSet {
             guard let poster = backdropView.image
@@ -51,32 +50,27 @@ class MovieDetailViewController: UIViewController {
         titleLabel.sizeToFit()
         descriptionLabel.sizeToFit()
         
-        // todo: set text according to whether movie is already favorite or not
-        //fav_label.text="favorise"
-        updateLabel()
+        updateFavoriteLabel()
+        
         backdropView.kf.setImage(with: movie?.fullBackdropURL, placeholder: UIImage(named:"default_backdrop"))
     }
     
     @IBAction func tapOnButton(_ sender: Any) {
-        
-        if (fav_label.text == "favorise"){
-            realm.addFavorites(movieTitle: movie?.title ?? "")
-            fav_label.text = "unfavorise"
-        }
-        else {
+        if (realm.isFavorite(movieTitle: movie?.title ?? "")){
             realm.removeFavorites(movieTitle: movie?.title ?? "")
-            fav_label.text = "favorise"
+        } else {
+            realm.addFavorites(movieTitle: movie?.title ?? "")
         }
         
-        //updateLabel()
+        updateFavoriteLabel()
     }
     
-    func updateLabel(){
+    func updateFavoriteLabel(){
         if (realm.isFavorite(movieTitle: movie?.title ?? "")){
-            fav_label.text="unfavorise"
+            fav_star.setImage(UIImage(named: "star_filled"), for: UIControl.State.normal)
         }
         else {
-            fav_label.text="favorise"
+            fav_star.setImage(UIImage(named: "star_empty"), for: UIControl.State.normal)
         }
     }
 }

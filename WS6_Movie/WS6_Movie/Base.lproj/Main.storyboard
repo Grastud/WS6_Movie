@@ -184,7 +184,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2g-wu-nMJ">
-                                                <rect key="frame" x="20" y="320" width="265" height="30"/>
+                                                <rect key="frame" x="20" y="320" width="297" height="30"/>
                                                 <accessibility key="accessibilityConfiguration" label="titleLabel"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -203,39 +203,33 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ItF-to-XBa">
-                                                <rect key="frame" x="319" y="323" width="30" height="30"/>
+                                                <rect key="frame" x="325" y="320" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="36G-UR-6zb"/>
+                                                    <constraint firstAttribute="width" constant="30" id="mFW-gy-NEq"/>
+                                                </constraints>
                                                 <connections>
                                                     <action selector="tapOnButton:" destination="Q2t-8R-xEP" eventType="touchUpInside" id="nqb-uH-4ms"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="favorise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFL-Q3-yvu">
-                                                <rect key="frame" x="294" y="320" width="61" height="29"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="29" id="2KH-qi-8JO"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="vJF-gH-gmc" firstAttribute="top" secondItem="m3a-zj-lJ0" secondAttribute="top" id="3JX-k2-Hj2"/>
                                             <constraint firstItem="vJF-gH-gmc" firstAttribute="trailing" secondItem="m3a-zj-lJ0" secondAttribute="trailing" id="4di-os-2A8"/>
-                                            <constraint firstItem="dFL-Q3-yvu" firstAttribute="leading" secondItem="x2g-wu-nMJ" secondAttribute="trailing" constant="9" id="BXY-qu-id9"/>
                                             <constraint firstItem="m3a-zj-lJ0" firstAttribute="trailing" secondItem="UGN-wv-2AJ" secondAttribute="trailing" constant="20" id="CIk-5X-2Tn"/>
-                                            <constraint firstItem="dFL-Q3-yvu" firstAttribute="top" secondItem="vJF-gH-gmc" secondAttribute="bottom" constant="20" id="EJC-cq-cgi"/>
+                                            <constraint firstItem="m3a-zj-lJ0" firstAttribute="trailing" secondItem="ItF-to-XBa" secondAttribute="trailing" constant="20" id="FZ5-d0-giL"/>
                                             <constraint firstItem="UGN-wv-2AJ" firstAttribute="leading" secondItem="m3a-zj-lJ0" secondAttribute="leading" constant="20" id="GNG-OU-V2c"/>
                                             <constraint firstItem="vJF-gH-gmc" firstAttribute="leading" secondItem="m3a-zj-lJ0" secondAttribute="leading" id="HCF-NG-mUd"/>
+                                            <constraint firstItem="ItF-to-XBa" firstAttribute="top" secondItem="vJF-gH-gmc" secondAttribute="bottom" constant="20" id="VAu-Tv-ItP"/>
                                             <constraint firstItem="m3a-zj-lJ0" firstAttribute="bottom" secondItem="UGN-wv-2AJ" secondAttribute="bottom" constant="23" id="Z4z-n3-fPS"/>
-                                            <constraint firstItem="m3a-zj-lJ0" firstAttribute="trailing" secondItem="dFL-Q3-yvu" secondAttribute="trailing" constant="20" id="ePd-rM-Khg"/>
                                             <constraint firstItem="x2g-wu-nMJ" firstAttribute="leading" secondItem="m3a-zj-lJ0" secondAttribute="leading" constant="20" id="goo-YX-8K4"/>
                                             <constraint firstItem="UGN-wv-2AJ" firstAttribute="top" secondItem="xZd-ap-B96" secondAttribute="bottom" constant="7.5" id="htj-Hv-oG4"/>
                                             <constraint firstItem="m3a-zj-lJ0" firstAttribute="trailing" secondItem="xZd-ap-B96" secondAttribute="trailing" constant="20" id="j1D-O8-Pbw"/>
                                             <constraint firstItem="xZd-ap-B96" firstAttribute="top" secondItem="x2g-wu-nMJ" secondAttribute="bottom" constant="10" id="jZo-LN-nHC"/>
-                                            <constraint firstItem="m3a-zj-lJ0" firstAttribute="trailing" secondItem="ItF-to-XBa" secondAttribute="trailing" constant="26" id="miC-et-aYY"/>
+                                            <constraint firstItem="xZd-ap-B96" firstAttribute="top" secondItem="ItF-to-XBa" secondAttribute="bottom" constant="10" id="n9I-eV-dlo"/>
                                             <constraint firstItem="xZd-ap-B96" firstAttribute="leading" secondItem="m3a-zj-lJ0" secondAttribute="leading" constant="20" id="pDb-97-GgR"/>
-                                            <constraint firstItem="xZd-ap-B96" firstAttribute="top" secondItem="ItF-to-XBa" secondAttribute="bottom" constant="7" id="rKc-fp-xDv"/>
                                             <constraint firstItem="x2g-wu-nMJ" firstAttribute="top" secondItem="vJF-gH-gmc" secondAttribute="bottom" constant="20" id="tvT-JH-nt1"/>
+                                            <constraint firstItem="ItF-to-XBa" firstAttribute="leading" secondItem="x2g-wu-nMJ" secondAttribute="trailing" constant="8" id="yBD-Vi-66b"/>
                                         </constraints>
                                         <viewLayoutGuide key="safeArea" id="m3a-zj-lJ0"/>
                                     </view>
@@ -264,7 +258,6 @@
                     <connections>
                         <outlet property="backdropView" destination="vJF-gH-gmc" id="0Ew-sc-3Dv"/>
                         <outlet property="descriptionLabel" destination="UGN-wv-2AJ" id="yYx-pk-jm8"/>
-                        <outlet property="fav_label" destination="dFL-Q3-yvu" id="ilw-Ms-hNq"/>
                         <outlet property="fav_star" destination="ItF-to-XBa" id="2mT-eG-Q7a"/>
                         <outlet property="posterHeight" destination="RxS-MX-FJ8" id="j3p-ph-FiG"/>
                         <outlet property="releaseDateLabel" destination="xZd-ap-B96" id="fE2-EX-17i"/>

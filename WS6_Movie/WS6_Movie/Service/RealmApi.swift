@@ -11,24 +11,16 @@ import RealmSwift
 
 class RealmApi{
     
-     let realm = try! Realm()
+    let realm = try! Realm()
     
-    func isFavorite(movieTitle:String) -> Bool {
-        
-        let favorites = realm.objects(Favorite.self)
-        
-        for fav in favorites {
-            if (fav.title==movieTitle) {
-                return true
-            }
-        return false
-    }
-      return false
+    func isFavorite(movieTitle: String) -> Bool {
+        let favorites = realm.objects(Favorite.self).filter("title = '\(movieTitle)'")
+        return favorites.count > 0
     }
     
     
-    func findFavorite(movieTitle:String) -> Favorite {
-        let fav = realm.object(ofType: Favorite.self, forPrimaryKey: movieTitle)
+    func findFavorite(movieTitle: String) -> Favorite {
+        let fav = realm.objects(Favorite.self).filter("title = '\(movieTitle)'").first
         return fav!
     }
     
@@ -38,46 +30,18 @@ class RealmApi{
             fav.title=movieTitle
             try! realm.write(){
                 realm.add(fav)
-        }
-    }
-}
-    func removeFavorites (movieTitle:String){
-        let toDelete = findFavorite(movieTitle:movieTitle)
-            if (toDelete.title==movieTitle) {
-                try! realm.write(){
-                    realm.delete(toDelete)
             }
-        
         }
-        
     }
-
-    /*func isFavorite (movieTitle:String) -> Bool {
-       
-        
-            //if (realm.objects(Favorite.self).contains(fav)){
-                return true
+    
+    func removeFavorites (movieTitle:String){
+        if (isFavorite(movieTitle: movieTitle)) {
+            let toDelete = findFavorite(movieTitle:movieTitle)
+            try! realm.write(){
+                realm.delete(toDelete)
+            }
         }
-            else{
-            
-                return false
-        }
-        }*/
-    //Damit man die View von Bookmarks füllen kann, die Favoriten nur anzeigen
-var favorites:Results<Favorite>? {
-    get {
-        guard let realm = try? Realm() else {
-            return nil
-        }
-        return realm.objects(Favorite.self)
     }
 }
-    
-    
-    
-    
-    
-    
-    }
     
 
