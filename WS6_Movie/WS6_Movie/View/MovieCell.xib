@@ -56,7 +56,7 @@
                     <constraint firstItem="WAF-qI-d1m" firstAttribute="top" secondItem="KB4-Vo-T0B" secondAttribute="bottom" constant="5" id="sjX-Fi-IGQ"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.23529411759999999" green="0.25490196079999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="overviewLabel" destination="WAF-qI-d1m" id="weY-0m-cv7"/>
                 <outlet property="posterImageView" destination="EkZ-5E-DUA" id="3zH-iK-TpM"/>
