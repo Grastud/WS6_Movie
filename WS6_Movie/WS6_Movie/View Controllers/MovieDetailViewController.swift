@@ -18,6 +18,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var taglineLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var budgetLabel: UILabel!
     @IBOutlet weak var revenueLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet private weak var posterHeight: NSLayoutConstraint!
@@ -49,6 +50,7 @@ class MovieDetailViewController: UIViewController {
         titleLabel.text = movieDetails?.title
         taglineLabel.text = movieDetails?.tagline
         releaseDateLabel.text = movieDetails?.releaseDate
+        budgetLabel.text = getCurrencyString(amount: movieDetails?.budget ?? 0, localizer: "en_US")
         revenueLabel.text = getCurrencyString(amount: movieDetails?.revenue ?? 0, localizer: "en_US")
         descriptionLabel.text = movieDetails?.overview
         backdropView.kf.setImage(with: movieDetails?.fullBackdropURL, placeholder: UIImage(named:"default_backdrop"))

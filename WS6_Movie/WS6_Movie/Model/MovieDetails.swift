@@ -17,6 +17,7 @@ struct MovieDetails {
     let overview: String
     let tagline: String
     let revenue: Int
+    let budget: Int
     
     var fullPosterURL:URL?{
         get{
@@ -48,6 +49,7 @@ extension MovieDetails: Decodable {
         case overview
         case tagline
         case revenue
+        case budget
     }
     
     init(from decoder: Decoder) throws {
@@ -61,6 +63,7 @@ extension MovieDetails: Decodable {
         overview = try container.decodeIfPresent(String.self, forKey: .overview) ?? ""
         tagline = try container.decodeIfPresent(String.self, forKey: .tagline) ?? ""
         revenue = try container.decode(Int.self, forKey: .revenue)
+        budget = try container.decode(Int.self, forKey: .budget)
     }
 }
 
