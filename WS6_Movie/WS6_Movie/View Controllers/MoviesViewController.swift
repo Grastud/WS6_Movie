@@ -59,6 +59,12 @@ class MoviesViewController: UIViewController {
     }
     
     @IBAction func listSwitcherChanged(_ sender: Any) {
+        newMovies.removeAll()
+        upcomingMovies.removeAll()
+        currentPageNew = 1
+        currentPageUpcoming = 1
+        loadNewMovies()
+        loadUpcomingMovies()
         tableView.reloadData()
     }
     
