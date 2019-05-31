@@ -13,23 +13,39 @@ class RealmApi{
     
      let realm = try! Realm()
     
+    func isFavorite(movieTitle:String) -> Bool {
+        
+        let fav = realm.object(ofType: Favorite.self, forPrimaryKey: movieTitle)
+        if (fav?.title==movieTitle) {
+            return true
+        }
+        return false
+    }
+    
+    func findFavorite(movieTitle:String) -> Favorite {
+        let fav = realm.object(ofType: Favorite.self, forPrimaryKey: movieTitle)
+        return fav!
+    }
+    
     func addFavorites (movieTitle:String){
-       
-        let fav = Favorite()
-        fav.title=movieTitle
-        try! realm.write(){
-            realm.add(fav)
+        if (isFavorite(movieTitle: movieTitle)==false) {
+            let fav = Favorite()
+            fav.title=movieTitle
+            try! realm.write(){
+                realm.add(fav)
         }
     }
-
-    func removeFavorites (movieTitle:String){
-        let toDelete = findFavorite(movieTitle: movieTitle)
-        if (toDelete?.title==movieTitle) {
-            try! realm.write(){
-                realm.delete(toDelete!)
-            }
-        }
 }
+    func removeFavorites (movieTitle:String){
+        let toDelete = findFavorite(movieTitle:movieTitle)
+            if (toDelete.title==movieTitle) {
+                try! realm.write(){
+                    realm.delete(toDelete)
+            }
+        
+        }
+        
+    }
 
     /*func isFavorite (movieTitle:String) -> Bool {
        
@@ -51,16 +67,12 @@ var favorites:Results<Favorite>? {
         return realm.objects(Favorite.self)
     }
 }
-    //Ob die Filme in der Liste des Favoriten sind
-    func findFavorite(movieTitle:String)->Favorite? {
-        let fav = realm.object(ofType: Favorite.self, forPrimaryKey: movieTitle)
-            if (fav?.title==movieTitle) {
-                return fav
-            }
-        return nil
+    
+    
+    
+    
+    
+    
     }
     
-    
-    
-    
-}
+
