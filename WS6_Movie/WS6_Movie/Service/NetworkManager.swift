@@ -37,7 +37,7 @@ struct NetworkManager: Network {
     }
     
     func getUpcomingMovies(page: Int, completion: @escaping ([Movie])->()){
-        provider.request(.upcoming(page: page)) { result in
+        provider.request(.upcomingMovies(page: page)) { result in
             switch result {
             case let .success(response):
                 do {
@@ -57,7 +57,7 @@ struct NetworkManager: Network {
     }    
     
     func getPopularMovies(page: Int, completion: @escaping ([Movie])->()){
-        provider.request(.popular(page: page)) { result in
+        provider.request(.popularMovies(page: page)) { result in
             switch result {
             case let .success(response):
                 do {
@@ -86,6 +86,42 @@ struct NetworkManager: Network {
                 } catch let err {
                     print(err)
                     print("Searched: page: \(page)")
+                    print(response.data)
+                }
+            case let .failure(error):
+                print(error)
+            }
+        }
+    }
+    
+    func getPopularActors(page: Int, completion: @escaping ([Actor])->()){
+        provider.request(.popularActors(page: page)) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    let results = try JSONDecoder().decode(ActorResult.self, from: response.data)
+                    completion(results.actors)
+                } catch let err {
+                    print(err)
+                    print("Searched: page: \(page)")
+                    print(response.data)
+                }
+            case let .failure(error):
+                print(error)
+            }
+        }
+    }
+    
+    func getActor(id: Int, completion: @escaping (ActorDetails)->()){
+        provider.request(.actor(id: id)) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    print("Responste from getActor: \(response)")
+                    let results = try JSONDecoder().decode(ActorDetails.self, from: response.data)
+                    completion(results)
+                } catch let err {
+                    print(err)
                     print(response.data)
                 }
             case let .failure(error):

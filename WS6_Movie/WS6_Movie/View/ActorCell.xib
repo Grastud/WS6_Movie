@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActorCell" rowHeight="120" id="KGk-i7-Jjw" customClass="ActorCell" customModule="WS6_Movie" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Oy-Og-brI">
+                        <rect key="frame" x="16" y="11" width="73" height="99"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="99" id="5Hq-8R-buD"/>
+                            <constraint firstAttribute="width" constant="73" id="Lvi-Up-F18"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMk-On-Ttz">
+                        <rect key="frame" x="97" y="11" width="207" height="99"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="99" id="yDD-w3-zW4"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="0Oy-Og-brI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="38e-7h-Mzx"/>
+                    <constraint firstItem="cMk-On-Ttz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="3h4-9Z-KmY"/>
+                    <constraint firstAttribute="trailing" secondItem="cMk-On-Ttz" secondAttribute="trailing" constant="16" id="SQ8-us-suU"/>
+                    <constraint firstItem="0Oy-Og-brI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="e8V-mL-qy3"/>
+                    <constraint firstItem="cMk-On-Ttz" firstAttribute="leading" secondItem="0Oy-Og-brI" secondAttribute="trailing" constant="8" id="w3Z-rV-KFZ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.23529411759999999" green="0.25490196079999999" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <connections>
+                <outlet property="profileImage" destination="0Oy-Og-brI" id="r8T-az-lrp"/>
+                <outlet property="titleLabel" destination="cMk-On-Ttz" id="hoT-v0-e23"/>
+            </connections>
+            <point key="canvasLocation" x="47.826086956521742" y="72.991071428571431"/>
+        </tableViewCell>
+    </objects>
+</document>
