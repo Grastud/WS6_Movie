@@ -27,8 +27,6 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet private weak var posterHeight: NSLayoutConstraint!
     
-    //@IBOutlet weak var unfavLabel: UILabel!
-    
     @IBOutlet weak var fav_star: UIButton!
     @IBOutlet weak var fav_label: UILabel!
     @IBOutlet weak var backdropView: UIImageView! {
@@ -43,53 +41,32 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         titleLabel.text = movie?.title
         releaseDateLabel.text = movie?.releaseDate
         descriptionLabel.text = movie?.overview
+        
+        titleLabel.sizeToFit()
         descriptionLabel.sizeToFit()
+        
+        // todo: set text according to whether movie is already favorite or not
         fav_label.text="favorise"
         
         backdropView.kf.setImage(with: movie?.fullBackdropURL, placeholder: UIImage(named:"default_backdrop"))
     }
     
     @IBAction func tapOnButton(_ sender: Any) {
-        if (fav_label.text=="favorise"){
+        if (fav_label.text == "favorise"){
             realm.addFavorites(movieTitle: movie?.title ?? "")
-            fav_label.text="unfavorise"
+            fav_label.text = "unfavorise"
         }
         else {
             realm.removeFavorites(movieTitle: movie?.title ?? "")
-            fav_label.text="favorise"
+            fav_label.text = "favorise"
         }
-        
-        
     }
-    
-    
-    }
-
-    /*
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    /* unwind segue?
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        
-        super.prepare(for: segue, sender: sender)
-    }
- */
-    
 }
 
 

@@ -12,5 +12,5 @@ class LocalMovieCell: UITableViewCell {
     static let nibName = String(describing: LocalMovieCell.self)
     static let reuseIdentifier = String(describing: LocalMovieCell.self)
     
-    @IBOutlet weak var titleLabel: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
 }
