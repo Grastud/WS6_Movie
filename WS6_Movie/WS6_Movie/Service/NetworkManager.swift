@@ -76,13 +76,13 @@ struct NetworkManager: Network {
         }
     }
     
-    func getSearchedMovies(page: Int, query: String, completion: @escaping ([Movie])->()){
+    func getSearchedMovies(page: Int, query: String, completion: @escaping (MovieResult)->()){
         provider.request(.searched(page: page, query: query)) { result in
             switch result {
             case let .success(response):
                 do {
-                    let results = try JSONDecoder().decode(MovieResult.self, from: response.data)
-                    completion(results.movies)
+                    let result = try JSONDecoder().decode(MovieResult.self, from: response.data)
+                    completion(result)
                 } catch let err {
                     print(err)
                     print("Searched: page: \(page)")
@@ -94,13 +94,13 @@ struct NetworkManager: Network {
         }
     }
     
-    func getPopularActors(page: Int, completion: @escaping ([Actor])->()){
+    func getPopularActors(page: Int, completion: @escaping (ActorResult)->()){
         provider.request(.popularActors(page: page)) { result in
             switch result {
             case let .success(response):
                 do {
-                    let results = try JSONDecoder().decode(ActorResult.self, from: response.data)
-                    completion(results.actors)
+                    let result = try JSONDecoder().decode(ActorResult.self, from: response.data)
+                    completion(result)
                 } catch let err {
                     print(err)
                     print("Searched: page: \(page)")

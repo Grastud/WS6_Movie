@@ -13,6 +13,8 @@ import Kingfisher
 class ActorsViewController: UIViewController {
     private let provider = NetworkManager()
     var actors = [Actor]()
+    var currentPage = 1
+    var totalPages = 1
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -44,10 +46,10 @@ class ActorsViewController: UIViewController {
     }
     
     private func loadPopularActors(){
-        provider.getPopularActors(page: 1) {[weak self] actors in
-            self?.actors.removeAll()
-            self?.actors.append(contentsOf: actors)
+        provider.getPopularActors(page: currentPage) {[weak self] actorResult in
+            self?.actors.append(contentsOf: actorResult.actors)
             self?.tableView.reloadData()
+            self?.totalPages = actorResult.numberOfPages
         }
     }
     
@@ -60,6 +62,11 @@ extension ActorsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ActorCell.reuseIdentifier, for: indexPath) as! ActorCell
+        
+        if((indexPath.row >= actors.count - 1) && (currentPage < totalPages)) {
+            currentPage += 1
+            loadPopularActors()
+        }
         
         let actor = actors[indexPath.row]
         cell.titleLabel.text = actor.name
