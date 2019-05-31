@@ -49,6 +49,9 @@ extension MovieApi: TargetType { //
             return "/person/popular" // https://developers.themoviedb.org/3/people/get-popular-people
         case .movie(let id):
             return "/movie/\(id)" // https://developers.themoviedb.org/3/movies/get-movie-details
+        case .recommended (let id):
+            return "/movie/\(id)" // https://developers.themoviedb.org/3/movies/get-movie-recommendations
+
         }
     }
     
