@@ -16,20 +16,24 @@ class ActorDetailViewController: UIViewController {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var knownForLabel: UILabel!
+    @IBOutlet weak var birthdayLabel: UILabel!
+    @IBOutlet weak var placeOfBirthLabel: UILabel!
     @IBOutlet weak var biographyLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadActor()
-        
-        updateTexts()
+
         biographyLabel.sizeToFit()
-        
     }
     
     private func updateTexts(){
         nameLabel.text = actorDetails?.name
+        knownForLabel.text = actorDetails?.knownForDepartment
+        birthdayLabel.text = actorDetails?.birthday
+        placeOfBirthLabel.text = actorDetails?.placeOfBirth
         biographyLabel.text = actorDetails?.biography
         profileImage.kf.setImage(with: actorDetails?.fullProfileURL, placeholder: UIImage(named:"default_backdrop"))
     }

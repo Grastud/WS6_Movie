@@ -13,6 +13,9 @@ struct ActorDetails{
     let name: String
     let biography: String
     let profilePath: String
+    let knownForDepartment: String
+    let birthday: String
+    let placeOfBirth: String
     
     var fullProfileURL:URL?{
         get{
@@ -31,18 +34,21 @@ extension ActorDetails: Decodable {
         case name
         case biography
         case profilePath = "profile_path"
+        case knownForDepartment = "known_for_department"
+        case placeOfBirth = "place_of_birth"
+        case birthday
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: ActorDetailsCodingKeys.self)
         
         id = try container.decode(Int.self, forKey: .id)
-        NSLog("id: \(id)")
         name = try container.decode(String.self, forKey: .name)
-        NSLog("name: \(name)")
         biography = try container.decode(String.self, forKey: .biography)
-        NSLog("biography: \(biography)")
         profilePath = try container.decodeIfPresent(String.self, forKey: .profilePath) ?? ""
+        knownForDepartment = try container.decode(String.self, forKey: .knownForDepartment)
+        birthday = try container.decodeIfPresent(String.self, forKey: .birthday) ?? ""
+        placeOfBirth = try container.decodeIfPresent(String.self, forKey: .placeOfBirth) ?? ""
     }
 }
 
